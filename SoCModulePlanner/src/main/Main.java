@@ -4,7 +4,8 @@ import gui.MainFrame;
 
 public class Main {
 	public static void main(String[] args) {
-		MainFrame mainFrame = new MainFrame();
+		Logic logic = new Logic();
+		MainFrame mainFrame = new MainFrame(logic);
 		
 		mainFrame.setVisible(true);
 	}
