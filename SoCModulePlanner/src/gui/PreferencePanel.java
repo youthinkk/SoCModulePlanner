@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 
 import java.util.Map.Entry;
@@ -19,6 +20,8 @@ import object.ModuleInfo;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class PreferencePanel extends JPanel {
@@ -56,6 +59,7 @@ public class PreferencePanel extends JPanel {
 		this.initMatriculationCombo(matriculationCombo);
 		this.initPreUniCombo(preUniCombo);
 		this.initAvailableModuleModel(availableModuleModel);
+		this.initPlannerButton(plannerButton, majorCombo, matriculationCombo, preUniCombo);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -162,5 +166,38 @@ public class PreferencePanel extends JPanel {
 			String moduleStr = String.format("%-10s %s", entry.getKey(), entry.getValue().getName());
 			model.addElement(moduleStr);
 		}
+	}
+	
+	private void initPlannerButton(JButton button, JComboBox<String> majorCombo, JComboBox<String> matriculationCombo, JComboBox<String> preUniCombo) {
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String message = "The following component(s) is/are not selected: \n";
+				boolean isValid = true;
+				
+				if (majorCombo.getSelectedIndex() == -1) {
+					message += "- Major \n";
+					isValid = false;
+				}
+				
+				if (matriculationCombo.getSelectedIndex() == -1) {
+					message += "- Matriculation Year \n";
+					isValid = false;
+				}
+				
+				if (preUniCombo.getSelectedIndex() == -1) {
+					message += "- Pre-University \n";
+					isValid = false;
+				}
+				
+				if (!isValid) {
+					JOptionPane.showMessageDialog(null, 
+							message, 
+							"Error", 
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					// Execute CLIPS
+				}
+			}
+		});
 	}
 }
