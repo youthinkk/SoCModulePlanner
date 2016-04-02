@@ -1,0 +1,967 @@
+{
+  "BT1101" : {
+    "name" : "Introduction to Business Analytics",
+    "code" : "BT1101",
+    "modularCredits" : 4
+  },
+  "BT2101" : {
+    "name" : "IT and Decision Making",
+    "code" : "BT2101",
+    "modularCredits" : 4
+  },
+  "BT3101" : {
+    "name" : "Business Analytics Capstone Project",
+    "code" : "BT3101",
+    "modularCredits" : 4
+  },
+  "BT3102" : {
+    "name" : "Computational Methods for Business Analytics",
+    "code" : "BT3102",
+    "modularCredits" : 4
+  },
+  "BT5110" : {
+    "name" : "Data Management and Warehousing",
+    "code" : "BT5110",
+    "modularCredits" : 4
+  },
+  "CG1001" : {
+    "name" : "Introduction to Computer Engineering",
+    "code" : "CG1001",
+    "modularCredits" : 2
+  },
+  "CG2271" : {
+    "name" : "Real-Time Operating Systems",
+    "code" : "CG2271",
+    "modularCredits" : 4
+  },
+  "CG3002" : {
+    "name" : "Embedded Systems Design Project",
+    "code" : "CG3002",
+    "modularCredits" : 6
+  },
+  "COMPUTATIONAL" : {
+    "name" : "4 Computational Complexity",
+    "code" : "COMPUTATIONAL",
+    "modularCredits" : 0
+  },
+  "CP2201" : {
+    "name" : "Journey of the Innovator",
+    "code" : "CP2201",
+    "modularCredits" : 2
+  },
+  "CP3201" : {
+    "name" : "Industry Seminar",
+    "code" : "CP3201",
+    "modularCredits" : 2
+  },
+  "CS1010" : {
+    "name" : "Programming Methodology",
+    "code" : "CS1010",
+    "modularCredits" : 4
+  },
+  "CS1010E" : {
+    "name" : "Programming Methodology",
+    "code" : "CS1010E",
+    "modularCredits" : 4
+  },
+  "CS1010J" : {
+    "name" : "Programming Methodology",
+    "code" : "CS1010J",
+    "modularCredits" : 4
+  },
+  "CS1010S" : {
+    "name" : "Programming Methodology",
+    "code" : "CS1010S",
+    "modularCredits" : 4
+  },
+  "CS1010X" : {
+    "name" : "Programming Methodology",
+    "code" : "CS1010X",
+    "modularCredits" : 4
+  },
+  "CS1020" : {
+    "name" : "Data Structures and Algorithms I",
+    "code" : "CS1020",
+    "modularCredits" : 4
+  },
+  "CS1020E" : {
+    "name" : "Data Structures and Algorithms I",
+    "code" : "CS1020E",
+    "modularCredits" : 4
+  },
+  "CS1101S" : {
+    "name" : "Programming Methodology",
+    "code" : "CS1101S",
+    "modularCredits" : 5
+  },
+  "CS1231" : {
+    "name" : "Discrete Structures",
+    "code" : "CS1231",
+    "modularCredits" : 4
+  },
+  "CS2010" : {
+    "name" : "Data Structures and Algorithms II",
+    "code" : "CS2010",
+    "modularCredits" : 4
+  },
+  "CS2020" : {
+    "name" : "Data Structures and Algorithms Accelerated",
+    "code" : "CS2020",
+    "modularCredits" : 6
+  },
+  "CS2100" : {
+    "name" : "Computer Organisation",
+    "code" : "CS2100",
+    "modularCredits" : 4
+  },
+  "CS2101" : {
+    "name" : "Effective Communication for Computing Professionals",
+    "code" : "CS2101",
+    "modularCredits" : 4
+  },
+  "CS2102" : {
+    "name" : "Database Systems",
+    "code" : "CS2102",
+    "modularCredits" : 4
+  },
+  "CS2103" : {
+    "name" : "Software Engineering",
+    "code" : "CS2103",
+    "modularCredits" : 4
+  },
+  "CS2103T" : {
+    "name" : "Software Engineering",
+    "code" : "CS2103T",
+    "modularCredits" : 4
+  },
+  "CS2104" : {
+    "name" : "Programming Language Concepts",
+    "code" : "CS2104",
+    "modularCredits" : 4
+  },
+  "CS2105" : {
+    "name" : "Introduction to Computer Networks",
+    "code" : "CS2105",
+    "modularCredits" : 4
+  },
+  "CS2106" : {
+    "name" : "Introduction to Operating Systems",
+    "code" : "CS2106",
+    "modularCredits" : 4
+  },
+  "CS2107" : {
+    "name" : "Introduction to Information Security",
+    "code" : "CS2107",
+    "modularCredits" : 4
+  },
+  "CS2108" : {
+    "name" : "Introduction to Media Computing",
+    "code" : "CS2108",
+    "modularCredits" : 4
+  },
+  "CS2220" : {
+    "name" : "Introduction to Computational Biology",
+    "code" : "CS2220",
+    "modularCredits" : 4
+  },
+  "CS2309" : {
+    "name" : "CS Research Methodology",
+    "code" : "CS2309",
+    "modularCredits" : 4
+  },
+  "CS3103" : {
+    "name" : "Computer Networks Practice",
+    "code" : "CS3103",
+    "modularCredits" : 4
+  },
+  "CS3201" : {
+    "name" : "Software Engineering Project I",
+    "code" : "CS3201",
+    "modularCredits" : 4
+  },
+  "CS3202" : {
+    "name" : "Software Engineering Project II",
+    "code" : "CS3202",
+    "modularCredits" : 4
+  },
+  "CS3210" : {
+    "name" : "Parallel Computing",
+    "code" : "CS3210",
+    "modularCredits" : 4
+  },
+  "CS3211" : {
+    "name" : "Parallel and Concurrent Programming",
+    "code" : "CS3211",
+    "modularCredits" : 4
+  },
+  "CS3216" : {
+    "name" : "Software Development on Evolving Platforms",
+    "code" : "CS3216",
+    "modularCredits" : 5
+  },
+  "CS3217" : {
+    "name" : "Software Engineering on Modern Application Platforms",
+    "code" : "CS3217",
+    "modularCredits" : 5
+  },
+  "CS3218" : {
+    "name" : "Multimodal Processing in Mobile Platforms",
+    "code" : "CS3218",
+    "modularCredits" : 4
+  },
+  "CS3219" : {
+    "name" : "Software Engineering Principles and Patterns",
+    "code" : "CS3219",
+    "modularCredits" : 4
+  },
+  "CS3223" : {
+    "name" : "Database Systems Implementation",
+    "code" : "CS3223",
+    "modularCredits" : 4
+  },
+  "CS3225" : {
+    "name" : "Combinatorial Methods in Bioinformatics",
+    "code" : "CS3225",
+    "modularCredits" : 4
+  },
+  "CS3226" : {
+    "name" : "Web Programming and Applications",
+    "code" : "CS3226",
+    "modularCredits" : 4
+  },
+  "CS3230" : {
+    "name" : "Design and Analysis of Algorithms",
+    "code" : "CS3230",
+    "modularCredits" : 4
+  },
+  "CS3233" : {
+    "name" : "Competitive Programming",
+    "code" : "CS3233",
+    "modularCredits" : 4
+  },
+  "CS3234" : {
+    "name" : "Logic and Formal Systems",
+    "code" : "CS3234",
+    "modularCredits" : 4
+  },
+  "CS3235" : {
+    "name" : "Computer Security",
+    "code" : "CS3235",
+    "modularCredits" : 4
+  },
+  "CS3240" : {
+    "name" : "Interaction Design",
+    "code" : "CS3240",
+    "modularCredits" : 4
+  },
+  "CS3241" : {
+    "name" : "Computer Graphics",
+    "code" : "CS3241",
+    "modularCredits" : 4
+  },
+  "CS3242" : {
+    "name" : "3D Modeling and Animation",
+    "code" : "CS3242",
+    "modularCredits" : 4
+  },
+  "CS3243" : {
+    "name" : "Introduction to Artificial Intelligence",
+    "code" : "CS3243",
+    "modularCredits" : 4
+  },
+  "CS3244" : {
+    "name" : "Machine Learning",
+    "code" : "CS3244",
+    "modularCredits" : 4
+  },
+  "CS3245" : {
+    "name" : "Information Retrieval",
+    "code" : "CS3245",
+    "modularCredits" : 4
+  },
+  "CS3247" : {
+    "name" : "Game Development",
+    "code" : "CS3247",
+    "modularCredits" : 4
+  },
+  "CS3249" : {
+    "name" : "User Interface Development",
+    "code" : "CS3249",
+    "modularCredits" : 4
+  },
+  "CS3281" : {
+    "name" : "Thematic Systems Project I",
+    "code" : "CS3281",
+    "modularCredits" : 4
+  },
+  "CS3282" : {
+    "name" : "Thematic Systems Project II",
+    "code" : "CS3282",
+    "modularCredits" : 4
+  },
+  "CS3283" : {
+    "name" : "Media Technology Project I",
+    "code" : "CS3283",
+    "modularCredits" : 4
+  },
+  "CS3284" : {
+    "name" : "Media Technology Project II",
+    "code" : "CS3284",
+    "modularCredits" : 4
+  },
+  "CS4211" : {
+    "name" : "Formal Methods for Software Engineering",
+    "code" : "CS4211",
+    "modularCredits" : 4
+  },
+  "CS4212" : {
+    "name" : "Compiler Design",
+    "code" : "CS4212",
+    "modularCredits" : 4
+  },
+  "CS4215" : {
+    "name" : "Programming Language Implementation",
+    "code" : "CS4215",
+    "modularCredits" : 4
+  },
+  "CS4218" : {
+    "name" : "Software Testing",
+    "code" : "CS4218",
+    "modularCredits" : 4
+  },
+  "CS4220" : {
+    "name" : "Knowledge Discovery Methods in Bioinformatics",
+    "code" : "CS4220",
+    "modularCredits" : 4
+  },
+  "CS4221" : {
+    "name" : "Database Applications Design and Tuning",
+    "code" : "CS4221",
+    "modularCredits" : 4
+  },
+  "CS4222" : {
+    "name" : "Wireless Networking",
+    "code" : "CS4222",
+    "modularCredits" : 4
+  },
+  "CS4223" : {
+    "name" : "Multi-core Architectures",
+    "code" : "CS4223",
+    "modularCredits" : 4
+  },
+  "CS4224" : {
+    "name" : "Distributed Databases",
+    "code" : "CS4224",
+    "modularCredits" : 4
+  },
+  "CS4225" : {
+    "name" : "Massive Data Processing Techniques in Data Science",
+    "code" : "CS4225",
+    "modularCredits" : 4
+  },
+  "CS4226" : {
+    "name" : "Internet Architecture",
+    "code" : "CS4226",
+    "modularCredits" : 4
+  },
+  "CS4231" : {
+    "name" : "Parallel and Distributed Algorithms",
+    "code" : "CS4231",
+    "modularCredits" : 4
+  },
+  "CS4232" : {
+    "name" : "Theory of Computation",
+    "code" : "CS4232",
+    "modularCredits" : 4
+  },
+  "CS4234" : {
+    "name" : "Optimisation Algorithms",
+    "code" : "CS4234",
+    "modularCredits" : 4
+  },
+  "CS4236" : {
+    "name" : "Cryptography Theory and Practice",
+    "code" : "CS4236",
+    "modularCredits" : 4
+  },
+  "CS4238" : {
+    "name" : "Computer Security Practice",
+    "code" : "CS4238",
+    "modularCredits" : 4
+  },
+  "CS4239" : {
+    "name" : "Software Security",
+    "code" : "CS4239",
+    "modularCredits" : 4
+  },
+  "CS4242" : {
+    "name" : "Social Media Computing",
+    "code" : "CS4242",
+    "modularCredits" : 4
+  },
+  "CS4243" : {
+    "name" : "Computer Vision and Pattern Recognition",
+    "code" : "CS4243",
+    "modularCredits" : 4
+  },
+  "CS4244" : {
+    "name" : "Knowledge-Based Systems",
+    "code" : "CS4244",
+    "modularCredits" : 4
+  },
+  "CS4246" : {
+    "name" : "AI Planning and Decision Making",
+    "code" : "CS4246",
+    "modularCredits" : 4
+  },
+  "CS4247" : {
+    "name" : "Graphics Rendering Techniques",
+    "code" : "CS4247",
+    "modularCredits" : 4
+  },
+  "CS4248" : {
+    "name" : "Natural Language Processing",
+    "code" : "CS4248",
+    "modularCredits" : 4
+  },
+  "CS4249" : {
+    "name" : "Phenomena and Theories of Human-Computer Interaction",
+    "code" : "CS4249",
+    "modularCredits" : 4
+  },
+  "CS4340" : {
+    "name" : "Digital Special Effects",
+    "code" : "CS4340",
+    "modularCredits" : 4
+  },
+  "CS4345" : {
+    "name" : "General-Purpose Computation on GPU",
+    "code" : "CS4345",
+    "modularCredits" : 4
+  },
+  "CS4350" : {
+    "name" : "Game Development Project",
+    "code" : "CS4350",
+    "modularCredits" : 4
+  },
+  "CS5214" : {
+    "name" : "Design of Optimising Compilers",
+    "code" : "CS5214",
+    "modularCredits" : 4
+  },
+  "CS5218" : {
+    "name" : "Principles of Program Analysis",
+    "code" : "CS5218",
+    "modularCredits" : 4
+  },
+  "CS5222" : {
+    "name" : "Advanced Computer Architecture",
+    "code" : "CS5222",
+    "modularCredits" : 4
+  },
+  "CS5223" : {
+    "name" : "Distributed Systems",
+    "code" : "CS5223",
+    "modularCredits" : 4
+  },
+  "CS5224" : {
+    "name" : "Cloud Computing",
+    "code" : "CS5224",
+    "modularCredits" : 4
+  },
+  "CS5226" : {
+    "name" : "Database Tuning",
+    "code" : "CS5226",
+    "modularCredits" : 4
+  },
+  "CS5228" : {
+    "name" : "Knowledge Discovery and Data Mining",
+    "code" : "CS5228",
+    "modularCredits" : 4
+  },
+  "CS5229" : {
+    "name" : "Advanced Computer Networks",
+    "code" : "CS5229",
+    "modularCredits" : 4
+  },
+  "CS5230" : {
+    "name" : "Computational Complexity",
+    "code" : "CS5230",
+    "modularCredits" : 4
+  },
+  "CS5231" : {
+    "name" : "Systems Security",
+    "code" : "CS5231",
+    "modularCredits" : 4
+  },
+  "CS5232" : {
+    "name" : "Formal Specification and Design Techniques",
+    "code" : "CS5232",
+    "modularCredits" : 4
+  },
+  "CS5233" : {
+    "name" : "Simulation and Modelling Techniques",
+    "code" : "CS5233",
+    "modularCredits" : 4
+  },
+  "CS5240" : {
+    "name" : "Theoretical Foundations in MultiMedia",
+    "code" : "CS5240",
+    "modularCredits" : 4
+  },
+  "CS5248" : {
+    "name" : "Systems Support for Continuous Media",
+    "code" : "CS5248",
+    "modularCredits" : 4
+  },
+  "CS5321" : {
+    "name" : "Network Security",
+    "code" : "CS5321",
+    "modularCredits" : 4
+  },
+  "CS5331" : {
+    "name" : "Web Security",
+    "code" : "CS5331",
+    "modularCredits" : 4
+  },
+  "CS5340" : {
+    "name" : "Uncertainty Modelling in AI",
+    "code" : "CS5340",
+    "modularCredits" : 4
+  },
+  "CS5342" : {
+    "name" : "Multimedia Computing and Applications",
+    "code" : "CS5342",
+    "modularCredits" : 4
+  },
+  "CS5344" : {
+    "name" : "Big-Data Analytics Technology",
+    "code" : "CS5344",
+    "modularCredits" : 4
+  },
+  "CS5345" : {
+    "name" : "Social and Digital Media Analytics",
+    "code" : "CS5345",
+    "modularCredits" : 4
+  },
+  "CS6101" : {
+    "name" : "Exploration of Computer Science Research",
+    "code" : "CS6101",
+    "modularCredits" : 4
+  },
+  "CS6202" : {
+    "name" : "Advanced Topics in Programming Languages",
+    "code" : "CS6202",
+    "modularCredits" : 4
+  },
+  "CS6203" : {
+    "name" : "Advanced Topics in Database Systems",
+    "code" : "CS6203",
+    "modularCredits" : 4
+  },
+  "CS6204" : {
+    "name" : "Advanced Topics in Networking",
+    "code" : "CS6204",
+    "modularCredits" : 4
+  },
+  "CS6205" : {
+    "name" : "Advanced Modelling & Simulation",
+    "code" : "CS6205",
+    "modularCredits" : 4
+  },
+  "CS6210" : {
+    "name" : "The Art of Computer Science Research",
+    "code" : "CS6210",
+    "modularCredits" : 4
+  },
+  "CS6213" : {
+    "name" : "Special Topics in Distributed Computing",
+    "code" : "CS6213",
+    "modularCredits" : 4
+  },
+  "CS6220" : {
+    "name" : "Advanced Topics in Data Mining",
+    "code" : "CS6220",
+    "modularCredits" : 4
+  },
+  "CS6222" : {
+    "name" : "Advanced Topics in Computational Biology",
+    "code" : "CS6222",
+    "modularCredits" : 4
+  },
+  "CS6234" : {
+    "name" : "Advanced Algorithms",
+    "code" : "CS6234",
+    "modularCredits" : 4
+  },
+  "CS6241" : {
+    "name" : "Advanced Topics in Computer Graphics",
+    "code" : "CS6241",
+    "modularCredits" : 4
+  },
+  "CS6242" : {
+    "name" : "Digital Libraries",
+    "code" : "CS6242",
+    "modularCredits" : 4
+  },
+  "CS6244" : {
+    "name" : "Robot Motion Planning & Control",
+    "code" : "CS6244",
+    "modularCredits" : 4
+  },
+  "CS6281" : {
+    "name" : "Topics in Computer Science II",
+    "code" : "CS6281",
+    "modularCredits" : 4
+  },
+  "CS6282" : {
+    "name" : "Topics in Computer Science III",
+    "code" : "CS6282",
+    "modularCredits" : 4
+  },
+  "FMC1206" : {
+    "name" : "Freshman Seminar: Computing for a Better World",
+    "code" : "FMC1206",
+    "modularCredits" : 4
+  },
+  "GEK1901" : {
+    "name" : "Critical Thinking in the Information Age",
+    "code" : "GEK1901",
+    "modularCredits" : 4
+  },
+  "GET1031" : {
+    "name" : "Computational Thinking",
+    "code" : "GET1031",
+    "modularCredits" : 4
+  },
+  "IFS4101" : {
+    "name" : "Legal Aspects of Information Security",
+    "code" : "IFS4101",
+    "modularCredits" : 4
+  },
+  "IS1103" : {
+    "name" : "Computing and Society",
+    "code" : "IS1103",
+    "modularCredits" : 4
+  },
+  "IS1103X" : {
+    "name" : "Computing and Society",
+    "code" : "IS1103X",
+    "modularCredits" : 4
+  },
+  "IS1105" : {
+    "name" : "Strategic IT Applications",
+    "code" : "IS1105",
+    "modularCredits" : 4
+  },
+  "IS1112" : {
+    "name" : "E-Business Essentials",
+    "code" : "IS1112",
+    "modularCredits" : 4
+  },
+  "IS1112X" : {
+    "name" : "E-Business Essentials",
+    "code" : "IS1112X",
+    "modularCredits" : 4
+  },
+  "IS2101" : {
+    "name" : "Business and Technical Communication",
+    "code" : "IS2101",
+    "modularCredits" : 4
+  },
+  "IS2102" : {
+    "name" : "Requirements Analysis and Design",
+    "code" : "IS2102",
+    "modularCredits" : 4
+  },
+  "IS2103" : {
+    "name" : "Enterprise Systems Development Concepts",
+    "code" : "IS2103",
+    "modularCredits" : 4
+  },
+  "IS2104" : {
+    "name" : "Software Team Dynamics",
+    "code" : "IS2104",
+    "modularCredits" : 4
+  },
+  "IS2150" : {
+    "name" : "E-Business Design and Implementation",
+    "code" : "IS2150",
+    "modularCredits" : 4
+  },
+  "IS3101" : {
+    "name" : "Management of Information Systems",
+    "code" : "IS3101",
+    "modularCredits" : 4
+  },
+  "IS3102" : {
+    "name" : "Enterprise Systems Development Project",
+    "code" : "IS3102",
+    "modularCredits" : 8
+  },
+  "IS3150" : {
+    "name" : "Digital and New Media Marketing",
+    "code" : "IS3150",
+    "modularCredits" : 4
+  },
+  "IS3220" : {
+    "name" : "Service Design and Innovation",
+    "code" : "IS3220",
+    "modularCredits" : 4
+  },
+  "IS3221" : {
+    "name" : "Enterprise Resource Planning Systems",
+    "code" : "IS3221",
+    "modularCredits" : 4
+  },
+  "IS3222" : {
+    "name" : "IT and Customer Relationship Management",
+    "code" : "IS3222",
+    "modularCredits" : 4
+  },
+  "IS3223" : {
+    "name" : "IT and Supply Chain Management",
+    "code" : "IS3223",
+    "modularCredits" : 4
+  },
+  "IS3240" : {
+    "name" : "Economics of E-Business",
+    "code" : "IS3240",
+    "modularCredits" : 4
+  },
+  "IS3242" : {
+    "name" : "Software Quality Management",
+    "code" : "IS3242",
+    "modularCredits" : 4
+  },
+  "IS3243" : {
+    "name" : "Technology Strategy and Management",
+    "code" : "IS3243",
+    "modularCredits" : 4
+  },
+  "IS3250" : {
+    "name" : "Health Informatics",
+    "code" : "IS3250",
+    "modularCredits" : 4
+  },
+  "IS3251" : {
+    "name" : "Principles of Technology Entrepreneurship",
+    "code" : "IS3251",
+    "modularCredits" : 4
+  },
+  "IS3261" : {
+    "name" : "Mobile Apps Development for Enterprise",
+    "code" : "IS3261",
+    "modularCredits" : 4
+  },
+  "IS4100" : {
+    "name" : "IT Project Management",
+    "code" : "IS4100",
+    "modularCredits" : 4
+  },
+  "IS4102" : {
+    "name" : "E-Business Capstone Project",
+    "code" : "IS4102",
+    "modularCredits" : 8
+  },
+  "IS4150" : {
+    "name" : "Mobile and Ubiquitous Commerce",
+    "code" : "IS4150",
+    "modularCredits" : 4
+  },
+  "IS4204" : {
+    "name" : "IT Governance",
+    "code" : "IS4204",
+    "modularCredits" : 4
+  },
+  "IS4224" : {
+    "name" : "Service Systems",
+    "code" : "IS4224",
+    "modularCredits" : 4
+  },
+  "IS4225" : {
+    "name" : "Strategic IS Planning",
+    "code" : "IS4225",
+    "modularCredits" : 4
+  },
+  "IS4226" : {
+    "name" : "IT Outsourcing and Offshoring Management",
+    "code" : "IS4226",
+    "modularCredits" : 4
+  },
+  "IS4227" : {
+    "name" : "Enterprise Service-Oriented Architecture",
+    "code" : "IS4227",
+    "modularCredits" : 4
+  },
+  "IS4228" : {
+    "name" : "Information Technologies in Financial Services",
+    "code" : "IS4228",
+    "modularCredits" : 4
+  },
+  "IS4231" : {
+    "name" : "Information Security Management",
+    "code" : "IS4231",
+    "modularCredits" : 4
+  },
+  "IS4233" : {
+    "name" : "Legal Aspects of Information Technology",
+    "code" : "IS4233",
+    "modularCredits" : 4
+  },
+  "IS4234" : {
+    "name" : "Control and Audit of Information Systems",
+    "code" : "IS4234",
+    "modularCredits" : 4
+  },
+  "IS4240" : {
+    "name" : "Business Intelligence Systems",
+    "code" : "IS4240",
+    "modularCredits" : 4
+  },
+  "IS4241" : {
+    "name" : "Social Media Network Analysis",
+    "code" : "IS4241",
+    "modularCredits" : 4
+  },
+  "IS4243" : {
+    "name" : "Information Systems Consulting",
+    "code" : "IS4243",
+    "modularCredits" : 4
+  },
+  "IS4250" : {
+    "name" : "Healthcare Analytics",
+    "code" : "IS4250",
+    "modularCredits" : 4
+  },
+  "IS4260" : {
+    "name" : "E-Commerce Business Models",
+    "code" : "IS4260",
+    "modularCredits" : 4
+  },
+  "IS5002" : {
+    "name" : "Contemporary IS Management",
+    "code" : "IS5002",
+    "modularCredits" : 4
+  },
+  "IS5110" : {
+    "name" : "Software Project Management",
+    "code" : "IS5110",
+    "modularCredits" : 4
+  },
+  "IS5111" : {
+    "name" : "Integration of IS and Business",
+    "code" : "IS5111",
+    "modularCredits" : 4
+  },
+  "IS5113" : {
+    "name" : "Computer Mediated Communications",
+    "code" : "IS5113",
+    "modularCredits" : 4
+  },
+  "IS5114" : {
+    "name" : "Information Technology Outsourcing",
+    "code" : "IS5114",
+    "modularCredits" : 4
+  },
+  "IS5116" : {
+    "name" : "IT and Entrepreneurship",
+    "code" : "IS5116",
+    "modularCredits" : 4
+  },
+  "IS5117" : {
+    "name" : "Electronic Government",
+    "code" : "IS5117",
+    "modularCredits" : 4
+  },
+  "IS5120" : {
+    "name" : "Information Technology Policies",
+    "code" : "IS5120",
+    "modularCredits" : 4
+  },
+  "IS5126" : {
+    "name" : "Hands-On with Business Analytics",
+    "code" : "IS5126",
+    "modularCredits" : 4
+  },
+  "IS5127" : {
+    "name" : "Managing and Using New Media",
+    "code" : "IS5127",
+    "modularCredits" : 4
+  },
+  "IS5128" : {
+    "name" : "Organizing for IT Innovation",
+    "code" : "IS5128",
+    "modularCredits" : 4
+  },
+  "IS5151" : {
+    "name" : "Information Security Policies",
+    "code" : "IS5151",
+    "modularCredits" : 4
+  },
+  "IS5152" : {
+    "name" : "Decision Making Technologies",
+    "code" : "IS5152",
+    "modularCredits" : 4
+  },
+  "IS6000" : {
+    "name" : "Qualifying Examination in IS",
+    "code" : "IS6000",
+    "modularCredits" : 6
+  },
+  "IS6001" : {
+    "name" : "Qualitative Methods for IS Research",
+    "code" : "IS6001",
+    "modularCredits" : 4
+  },
+  "IS6002" : {
+    "name" : "Quantitative Methods for IS Research",
+    "code" : "IS6002",
+    "modularCredits" : 4
+  },
+  "IS6003" : {
+    "name" : "Contemporary Theories for IS Research",
+    "code" : "IS6003",
+    "modularCredits" : 4
+  },
+  "IS6004" : {
+    "name" : "Econometrics for IS Research",
+    "code" : "IS6004",
+    "modularCredits" : 4
+  },
+  "IS6005" : {
+    "name" : "Seminars in Information Systems I",
+    "code" : "IS6005",
+    "modularCredits" : 2
+  },
+  "IS6103" : {
+    "name" : "Design Science Research in Information Systems",
+    "code" : "IS6103",
+    "modularCredits" : 4
+  },
+  "IT1001" : {
+    "name" : "Introduction to Computing",
+    "code" : "IT1001",
+    "modularCredits" : 4
+  },
+  "IT1004" : {
+    "name" : "Introduction to Electronic Commerce",
+    "code" : "IT1004",
+    "modularCredits" : 4
+  },
+  "IT1005" : {
+    "name" : "Introduction to Programming with Matlab",
+    "code" : "IT1005",
+    "modularCredits" : 4
+  },
+  "IT2001" : {
+    "name" : "Network Technology and Applications",
+    "code" : "IT2001",
+    "modularCredits" : 4
+  },
+  "IT2002" : {
+    "name" : "Database Technology and Management",
+    "code" : "IT2002",
+    "modularCredits" : 4
+  }
+}
