@@ -50,7 +50,48 @@ public class ModulePanel extends JPanel {
 	public ModulePanel() {
 		initAddButton();
 		initRemoveButton();
-		
+		initLayout();
+	}
+	
+	private void initAddButton() {
+		_addButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<KeyValue> selectedItems = availableList.getSelectedValuesList();
+				
+				for (int i = 0; i < selectedItems.size(); i++) {
+					KeyValue item = selectedItems.get(i);
+					selectedModel.addElement(item);
+					availableModel.removeElement(item);
+				}
+				
+				sortListModel(selectedModel);
+			}
+			
+		});
+	}
+	
+	private void initRemoveButton() {
+		_removeButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<KeyValue> selectedItems = selectedList.getSelectedValuesList();
+				
+				for (int i = 0; i < selectedItems.size(); i++) {
+					KeyValue item = selectedItems.get(i);
+					availableModel.addElement(item);
+					selectedModel.removeElement(item);
+				}
+				
+				sortListModel(availableModel);
+			}
+			
+		});
+	}
+	
+	private void initLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -103,79 +144,6 @@ public class ModulePanel extends JPanel {
 					.addGap(17))
 		);
 		setLayout(groupLayout);
-
-	}
-	
-	public void clearSelectedList() {
-		selectedModel.removeAllElements();
-	}
-	
-	public ArrayList<String> getSelectedList() {
-		List<KeyValue> list = Collections.list(selectedModel.elements());
-		ArrayList<String> modules = new ArrayList<String>();
-		
-		for (int i = 0; i < list.size(); i++) {
-			modules.add(list.get(i).getKey());
-		}
-		return modules;
-	}
-	
-	/**
-	 * Set available modules in the database.
-	 * Only initialize once.
-	 * @param moduleList
-	 */
-	public void initModuleList(TreeMap<String, ModuleInfo> moduleList) {
-		_moduleList = moduleList;
-		setAvailableModel();
-	}
-
-	private void setAvailableModel() {
-		Set<Entry<String, ModuleInfo>> entries = _moduleList.entrySet();
-		
-		for(Entry<String, ModuleInfo> entry: entries) {
-			String value = String.format("%-10s %s", entry.getKey(), entry.getValue().getName());
-			KeyValue keyValue = new KeyValue(entry.getKey(), value);
-			availableModel.addElement(keyValue);
-		}
-	}
-	
-	private void initAddButton() {
-		_addButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				List<KeyValue> selectedItems = availableList.getSelectedValuesList();
-				
-				for (int i = 0; i < selectedItems.size(); i++) {
-					KeyValue item = selectedItems.get(i);
-					selectedModel.addElement(item);
-					availableModel.removeElement(item);
-				}
-				
-				sortListModel(selectedModel);
-			}
-			
-		});
-	}
-	
-	private void initRemoveButton() {
-		_removeButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				List<KeyValue> selectedItems = selectedList.getSelectedValuesList();
-				
-				for (int i = 0; i < selectedItems.size(); i++) {
-					KeyValue item = selectedItems.get(i);
-					availableModel.addElement(item);
-					selectedModel.removeElement(item);
-				}
-				
-				sortListModel(availableModel);
-			}
-			
-		});
 	}
 	
 	private void sortListModel(DefaultListModel<KeyValue> model) {
@@ -195,4 +163,39 @@ public class ModulePanel extends JPanel {
 			model.addElement(list.get(i));
 		}
 	}
+	
+	/**
+	 * Set available modules in the database.
+	 * Only initialize once.
+	 * @param moduleList
+	 */
+	public void initModuleList(TreeMap<String, ModuleInfo> moduleList) {
+		_moduleList = moduleList;
+		setAvailableModel();
+	}
+	
+	private void setAvailableModel() {
+		Set<Entry<String, ModuleInfo>> entries = _moduleList.entrySet();
+		
+		for(Entry<String, ModuleInfo> entry: entries) {
+			String value = String.format("%-10s %s", entry.getKey(), entry.getValue().getName());
+			KeyValue keyValue = new KeyValue(entry.getKey(), value);
+			availableModel.addElement(keyValue);
+		}
+	}
+	
+	public void clearSelectedList() {
+		selectedModel.removeAllElements();
+	}
+	
+	public ArrayList<String> getSelectedList() {
+		List<KeyValue> list = Collections.list(selectedModel.elements());
+		ArrayList<String> modules = new ArrayList<String>();
+		
+		for (int i = 0; i < list.size(); i++) {
+			modules.add(list.get(i).getKey());
+		}
+		return modules;
+	}
+	
 }

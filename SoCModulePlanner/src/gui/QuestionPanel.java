@@ -10,15 +10,17 @@ import javax.swing.JButton;
 
 public class QuestionPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	public final JLabel label = new JLabel("New label");
 	public final JComboBox<String> comboBox = new JComboBox<String>();
 	public final JButton nextButton = new JButton("Next >>");
 
 	public QuestionPanel() {
+		initLayout();
+	}
+	
+	private void initLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

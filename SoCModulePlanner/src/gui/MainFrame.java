@@ -97,9 +97,6 @@ public class MainFrame extends JFrame {
 		
 	};
 
-	/**
-	 * Create the frame.
-	 */
 	public MainFrame() {
 		
 		setTitle("SoC Module Planner");
