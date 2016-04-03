@@ -33,16 +33,16 @@ public class ModulePanel extends JPanel {
 	public JLabel queryLabel = new JLabel("Null");
 	public JLabel selectedLabel = new JLabel("Null");
 	
+	public JButton nextButton = new JButton("Next >>");
 	private JButton _addButton = new JButton("Add >>");
 	private JButton _removeButton = new JButton("<< Remove");
-	public JButton nextButton = new JButton("Next >>");
 	
 	private DefaultListModel<KeyValue> availableModel = new DefaultListModel<KeyValue>();
-	public JList<KeyValue> availableList = new JList<KeyValue>(availableModel);
+	private JList<KeyValue> availableList = new JList<KeyValue>(availableModel);
 	private JScrollPane availablePane = new JScrollPane(availableList);
 	
 	private DefaultListModel<KeyValue> selectedModel = new DefaultListModel<KeyValue>();
-	public JList<KeyValue> selectedList = new JList<KeyValue>(selectedModel);
+	private JList<KeyValue> selectedList = new JList<KeyValue>(selectedModel);
 	private JScrollPane selectedPane = new JScrollPane(selectedList);
 	
 	private TreeMap<String, ModuleInfo> _moduleList = new TreeMap<String, ModuleInfo>();
