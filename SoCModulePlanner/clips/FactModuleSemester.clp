@@ -15943,7 +15943,4 @@
 	(semester 1))
 ([semZB4199] of MODULESEM 
 	(code ZB4199)
-	(semester 1 2))
-([sem] of MODULESEM 
-	(code )
-	(semester)))
+	(semester 1 2)))
