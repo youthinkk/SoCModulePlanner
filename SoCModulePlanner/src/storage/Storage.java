@@ -6,6 +6,8 @@ import java.util.TreeMap;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import object.FocusArea;
 import object.ModuleInfo;
 
 public class Storage extends StorageFile {
@@ -20,6 +22,7 @@ public class Storage extends StorageFile {
 			
 			moduleList = _mapper.readValue(MODULE_INFO_FILE, typeRef);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return moduleList;
 		}
 		
@@ -36,6 +39,7 @@ public class Storage extends StorageFile {
 					
 			prereqList = _mapper.readValue(MODULE_PREREQ_FILE, typeRef);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return prereqList;
 		}
 		return prereqList;
@@ -50,6 +54,7 @@ public class Storage extends StorageFile {
 					
 			preclusionList = _mapper.readValue(MODULE_PRECLUSION_FILE, typeRef);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return preclusionList;
 		}
 		return preclusionList;
@@ -64,8 +69,24 @@ public class Storage extends StorageFile {
 					
 			historyList = _mapper.readValue(MODULE_HISTORY_FILE, typeRef);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return historyList;
 		}
 		return historyList;
+	}
+	
+	public static HashMap<String, FocusArea> getFocusArea() {
+		HashMap<String, FocusArea> focusAreaList = new HashMap<String, FocusArea>();
+		
+		try {
+			TypeReference<HashMap<String, FocusArea>> typeRef =
+					new TypeReference<HashMap<String, FocusArea>>() { };
+					
+			focusAreaList = _mapper.readValue(FOCUS_AREA_FILE, typeRef);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return focusAreaList;
+		}
+		return focusAreaList;
 	}
 }

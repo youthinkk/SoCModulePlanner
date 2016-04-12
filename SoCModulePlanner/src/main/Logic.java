@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+import object.FocusArea;
 import object.ModuleInfo;
 import storage.Storage;
 
@@ -12,12 +13,14 @@ public class Logic {
 	private HashMap<String, ArrayList<ArrayList<String>>> _modulePrereq;
 	private HashMap<String, ArrayList<String>> _modulePreclusion;
 	private HashMap<String, boolean[]> _moduleHistory;
+	private HashMap<String, FocusArea> _focusArea;
 	
 	public Logic() {
 		_moduleInfo = Storage.getModuleInfo();
 		_modulePrereq = Storage.getModulePrereq();
 		_modulePreclusion = Storage.getModulePreclusion();
 		_moduleHistory = Storage.getModuleHistory();
+		_focusArea = Storage.getFocusArea();
 	}
 	
 	public TreeMap<String, ModuleInfo> getModuleList() {
