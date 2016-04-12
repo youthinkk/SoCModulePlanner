@@ -8,7 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import object.ModuleInfo;
 
-public class ModuleInfoStorage extends StorageFile {
+public class Storage extends StorageFile {
 	private static ObjectMapper _mapper = new ObjectMapper();
 	
 	public static TreeMap<String, ModuleInfo> getModuleInfo() {

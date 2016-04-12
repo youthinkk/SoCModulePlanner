@@ -1,6 +1,6 @@
-package gui;
+package constant;
 
-public class GUIConst {
+public class Constant {
 	private final static String ASK_DEFAULT = "Please select ";
 	public final static String ASK_MATRICULATION_YEAR = ASK_DEFAULT + "your matriculation year:";
 	public final static String ASK_MAJOR = ASK_DEFAULT + "your major:";

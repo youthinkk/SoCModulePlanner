@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import constant.Constant;
 import main.Logic;
 
 @SuppressWarnings("serial")
@@ -51,7 +52,7 @@ public class MainFrame extends JFrame {
 			if (_questionPanel.comboBox.getSelectedIndex() != -1) {
 				_major = _questionPanel.comboBox.getSelectedItem().toString();
 				
-				if (_major.equals(GUIConst.MAJOR_COMPUTER_SCIENCE)) {
+				if (_major.equals(Constant.MAJOR_COMPUTER_SCIENCE)) {
 					askFocusArea();
 				} else {
 					askTakenModules();
@@ -114,15 +115,15 @@ public class MainFrame extends JFrame {
 	private void askMatriculationYear() {
 		clearActionListener();
 		
-		_questionPanel.label.setText(GUIConst.ASK_MATRICULATION_YEAR);
+		_questionPanel.label.setText(Constant.ASK_MATRICULATION_YEAR);
 		
 		_questionPanel.comboBox.removeAllItems();
-		_questionPanel.comboBox.addItem(GUIConst.ACADEMIC_YEAR_2015_2016);
-		_questionPanel.comboBox.addItem(GUIConst.ACADEMIC_YEAR_2014_2015);
-		_questionPanel.comboBox.addItem(GUIConst.ACADEMIC_YEAR_2013_2014);
-		_questionPanel.comboBox.addItem(GUIConst.ACADEMIC_YEAR_2012_2013);
-		_questionPanel.comboBox.addItem(GUIConst.ACADEMIC_YEAR_2011_2012);
-		_questionPanel.comboBox.addItem(GUIConst.ACADEMIC_YEAR_2010_2011);
+		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2015_2016);
+		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2014_2015);
+		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2013_2014);
+		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2012_2013);
+		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2011_2012);
+		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2010_2011);
 		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
 		
 		_questionPanel.nextButton.addActionListener(_matriculationYearListener);
@@ -131,16 +132,16 @@ public class MainFrame extends JFrame {
 	private void askMajor() {
 		clearActionListener();
 		
-		_questionPanel.label.setText(GUIConst.ASK_MAJOR);
+		_questionPanel.label.setText(Constant.ASK_MAJOR);
 		
 		_questionPanel.comboBox.removeAllItems();
-		_questionPanel.comboBox.addItem(GUIConst.MAJOR_BUSINESS_ANALYTICS);
-		_questionPanel.comboBox.addItem(GUIConst.MAJOR_COMPUTER_ENGINEERING);
-		_questionPanel.comboBox.addItem(GUIConst.MAJOR_COMPUTER_SCIENCE);
-		_questionPanel.comboBox.addItem(GUIConst.MAJOR_INFORMATION_SYSTEM);
+		_questionPanel.comboBox.addItem(Constant.MAJOR_BUSINESS_ANALYTICS);
+		_questionPanel.comboBox.addItem(Constant.MAJOR_COMPUTER_ENGINEERING);
+		_questionPanel.comboBox.addItem(Constant.MAJOR_COMPUTER_SCIENCE);
+		_questionPanel.comboBox.addItem(Constant.MAJOR_INFORMATION_SYSTEM);
 		
-		if (_matriculationYear.equals(GUIConst.ACADEMIC_YEAR_2015_2016)) {
-			_questionPanel.comboBox.addItem(GUIConst.MAJOR_INFORMATION_SECURITY);
+		if (_matriculationYear.equals(Constant.ACADEMIC_YEAR_2015_2016)) {
+			_questionPanel.comboBox.addItem(Constant.MAJOR_INFORMATION_SECURITY);
 		}
 		
 		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
@@ -151,10 +152,10 @@ public class MainFrame extends JFrame {
 	private void askFocusArea() {
 		clearActionListener();
 		
-		_questionPanel.label.setText(GUIConst.ASK_FOCUS_AREA);
+		_questionPanel.label.setText(Constant.ASK_FOCUS_AREA);
 		
 		_questionPanel.comboBox.removeAllItems();
-		if (_matriculationYear.equals(GUIConst.ACADEMIC_YEAR_2015_2016)) {
+		if (_matriculationYear.equals(Constant.ACADEMIC_YEAR_2015_2016)) {
 			addFocusAreaAfterAY1516(_questionPanel.comboBox);
 		} else {
 			addFocusAreaBeforeAY1516(_questionPanel.comboBox);
@@ -167,9 +168,9 @@ public class MainFrame extends JFrame {
 	private void askTakenModules() {
 		clearActionListener();
 		
-		_modulePanel.queryLabel.setText(GUIConst.ASK_TAKEN_MODULES);
-		_modulePanel.availableLabel.setText(GUIConst.LABEL_AVAILABLE_MODULES);
-		_modulePanel.selectedLabel.setText(GUIConst.LABEL_TAKEN_MODULES);
+		_modulePanel.queryLabel.setText(Constant.ASK_TAKEN_MODULES);
+		_modulePanel.availableLabel.setText(Constant.LABEL_AVAILABLE_MODULES);
+		_modulePanel.selectedLabel.setText(Constant.LABEL_TAKEN_MODULES);
 		_modulePanel.clearSelectedList();
 		_modulePanel.nextButton.addActionListener(_takenModulesListener);
 		
@@ -181,9 +182,9 @@ public class MainFrame extends JFrame {
 	private void askLikedModules() {
 		clearActionListener();
 		
-		_modulePanel.queryLabel.setText(GUIConst.ASK_LIKED_MODULES);
-		_modulePanel.availableLabel.setText(GUIConst.LABEL_AVAILABLE_MODULES);
-		_modulePanel.selectedLabel.setText(GUIConst.LABEL_LIKED_MODULES);
+		_modulePanel.queryLabel.setText(Constant.ASK_LIKED_MODULES);
+		_modulePanel.availableLabel.setText(Constant.LABEL_AVAILABLE_MODULES);
+		_modulePanel.selectedLabel.setText(Constant.LABEL_LIKED_MODULES);
 		_modulePanel.clearSelectedList();
 		_modulePanel.nextButton.addActionListener(_likedModulesListener);
 	}
@@ -193,31 +194,31 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void addFocusAreaAfterAY1516(JComboBox<String> combo) {
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_ALGORITHMS_THEORY);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_ARTIFICIAL_INTELLIGENCE);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_COMPUTER_GRAPHICS_GAMES);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_COMPUTER_SECURITY);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_DATABASE_SYSTEMS);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_MULTIMEDIA_INFORMATION_RETRIEVAL);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_NETWORKING_DISTRIBUTED_SYSTEMS);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_PARALLEL_COMPUTING);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_PROGRAMMING_LANGUAGES);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_SOFTWARE_ENGINEERING);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_ALGORITHMS_THEORY);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_ARTIFICIAL_INTELLIGENCE);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_COMPUTER_GRAPHICS_GAMES);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_COMPUTER_SECURITY);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_DATABASE_SYSTEMS);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_MULTIMEDIA_INFORMATION_RETRIEVAL);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_NETWORKING_DISTRIBUTED_SYSTEMS);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_PARALLEL_COMPUTING);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_PROGRAMMING_LANGUAGES);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_SOFTWARE_ENGINEERING);
 	}
 	
 	private void addFocusAreaBeforeAY1516(JComboBox<String> combo) {
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_ALGORITHMS_THEORY);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_ARTIFICIAL_INTELLIGENCE);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_COMPUTER_GRAPHICS_GAMES);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_COMPUTER_NETWORKS);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_COMPUTER_SECURITY);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_DATABASE_SYSTEMS);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_INFORMATION_RETRIEVAL);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_INTERACTIVE_MEDIA);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_PARALLEL_COMPUTING);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_PROGRAMMING_LANGUAGES);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_SOFTWARE_ENGINEERING);
-		_questionPanel.comboBox.addItem(GUIConst.FOCUS_VISUAL_COMPUTING);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_ALGORITHMS_THEORY);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_ARTIFICIAL_INTELLIGENCE);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_COMPUTER_GRAPHICS_GAMES);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_COMPUTER_NETWORKS);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_COMPUTER_SECURITY);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_DATABASE_SYSTEMS);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_INFORMATION_RETRIEVAL);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_INTERACTIVE_MEDIA);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_PARALLEL_COMPUTING);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_PROGRAMMING_LANGUAGES);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_SOFTWARE_ENGINEERING);
+		_questionPanel.comboBox.addItem(Constant.FOCUS_VISUAL_COMPUTING);
 	}
 	
 	private void showErrorDialog(String message) {
