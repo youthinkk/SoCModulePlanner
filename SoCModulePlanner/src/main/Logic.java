@@ -9,7 +9,7 @@ public class Logic {
 	private TreeMap<String, ModuleInfo> _moduleList;
 	
 	public Logic() {
-		_moduleList = ModuleInfoStorage.readFile();
+		_moduleList = ModuleInfoStorage.getModuleInfo();
 	}
 	
 	public TreeMap<String, ModuleInfo> getModuleList() {

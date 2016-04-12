@@ -1,5 +1,7 @@
 package storage;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -9,27 +11,12 @@ import object.ModuleInfo;
 public class ModuleInfoStorage extends StorageFile {
 	private static ObjectMapper _mapper = new ObjectMapper();
 	
-	public static void writeFile(TreeMap<String, ModuleInfo> moduleList) {
-		try {
-			if (!MODULE_INFO_FILE.exists()) {
-				createFile();
-			}
-			
-			_mapper.writerWithDefaultPrettyPrinter().writeValue(MODULE_INFO_FILE, moduleList);
-		} catch (Exception e) {
-			// do nothing
-		}
-	}
-	
-	public static TreeMap<String, ModuleInfo> readFile() {
+	public static TreeMap<String, ModuleInfo> getModuleInfo() {
 		TreeMap<String, ModuleInfo> moduleList = new TreeMap<String, ModuleInfo>();
 		
 		try {
-			if (!MODULE_INFO_FILE.exists()) {
-				createFile();
-			}
-			
-			TypeReference<TreeMap<String, ModuleInfo>> typeRef = new TypeReference<TreeMap<String, ModuleInfo>>() { };
+			TypeReference<TreeMap<String, ModuleInfo>> typeRef = 
+					new TypeReference<TreeMap<String, ModuleInfo>>() { };
 			
 			moduleList = _mapper.readValue(MODULE_INFO_FILE, typeRef);
 		} catch (Exception e) {
@@ -39,14 +26,46 @@ public class ModuleInfoStorage extends StorageFile {
 		return moduleList;
 	}
 	
-	private static void createFile() {
+	public static HashMap<String, ArrayList<ArrayList<String>>> getModulePrereq() {
+		HashMap<String, ArrayList<ArrayList<String>>> prereqList = 
+				new HashMap<String, ArrayList<ArrayList<String>>>();
+		
 		try {
-			TreeMap<String, ModuleInfo> moduleList = new TreeMap<String, ModuleInfo>();
-			
-			// write empty module list
-			_mapper.writeValue(MODULE_INFO_FILE, moduleList);
+			TypeReference<HashMap<String, ArrayList<ArrayList<String>>>> typeRef = 
+					new TypeReference<HashMap<String, ArrayList<ArrayList<String>>>>() { };
+					
+			prereqList = _mapper.readValue(MODULE_PREREQ_FILE, typeRef);
 		} catch (Exception e) {
-			// do nothing
+			return prereqList;
 		}
+		return prereqList;
+	}
+	
+	public static HashMap<String, ArrayList<String>> getModulePreclusion() {
+		HashMap<String, ArrayList<String>> preclusionList = new HashMap<String, ArrayList<String>>();
+		
+		try {
+			TypeReference<HashMap<String, ArrayList<String>>> typeRef =
+					new TypeReference<HashMap<String, ArrayList<String>>>() { };
+					
+			preclusionList = _mapper.readValue(MODULE_PRECLUSION_FILE, typeRef);
+		} catch (Exception e) {
+			return preclusionList;
+		}
+		return preclusionList;
+	}
+	
+	public static HashMap<String, boolean[]> getModuleHistory() {
+		HashMap<String, boolean[]> historyList = new HashMap<String, boolean[]>();
+		
+		try {
+			TypeReference<HashMap<String, boolean[]>> typeRef =
+					new TypeReference<HashMap<String, boolean[]>>() { };
+					
+			historyList = _mapper.readValue(MODULE_HISTORY_FILE, typeRef);
+		} catch (Exception e) {
+			return historyList;
+		}
+		return historyList;
 	}
 }
