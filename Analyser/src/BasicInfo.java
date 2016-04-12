@@ -15,10 +15,14 @@ public class BasicInfo {
 		
 		String regex3 = "\"(.*?)\"";
 		
+		String regex4 = "(.*?)(\\d{4})(.*?)";
+		
 		Pattern pattern1 = Pattern.compile(regex1);
 		Pattern pattern2 = Pattern.compile(regex2);
 		Pattern pattern3 = Pattern.compile(regex3);
+		Pattern pattern4 = Pattern.compile(regex4);
 		Matcher matcher;
+		Matcher matcher2;
 		
 		while (scanner.hasNextLine()) {
 			String input = scanner.nextLine();
@@ -29,7 +33,15 @@ public class BasicInfo {
 			matcher = pattern1.matcher(input);
 			
 			if (matcher.matches()) {
-				System.out.println(matcher.group(2));
+				String code = matcher.group(2);
+				matcher2 = pattern4.matcher(code);
+				
+				System.out.println(code);
+				if (matcher2.matches()) {
+					int level = (Integer.parseInt(matcher2.group(2))/1000)*1000;
+					System.out.println(level);
+				}
+				
 				System.out.println(matcher.group(4));
 				System.out.println(matcher.group(6));
 				System.out.println(matcher.group(8));
@@ -42,15 +54,20 @@ public class BasicInfo {
 			}
 			
 			matcher = pattern3.matcher(type);
+			boolean isGem = false;
 			
 			while (matcher.find()) {
 				String result = matcher.group(1);
 				
-				if (result.equals("GEM2015")) {
-					System.out.println("GEM");
-				} else {
-					System.out.println(result);
-				}
+				if (result.equals("GEM2015") || result.equals("GEM")) {
+					isGem = true;
+				} 
+			}
+			
+			if (isGem) {
+				System.out.println("GEM");
+			} else {
+				System.out.println("Module");
 			}
 			
 			System.out.println();

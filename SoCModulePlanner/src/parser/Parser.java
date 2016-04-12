@@ -16,7 +16,7 @@ public class Parser {
 		_moduleList = ModuleInfoStorage.readFile();
 	}
 	
-	public static void SaveModuleInfo(String input) {
+	/*public static void SaveModuleInfo(String input) {
 		String[] splitInput = input.split(SPLIT_DELIMITER);
 		ArrayList<String> words = new ArrayList<>(Arrays.asList(splitInput));
 		
@@ -35,7 +35,7 @@ public class Parser {
 			// do nothing
 			System.out.println(e.getMessage());
 		} 
-	}
+	}*/
 	
 	/*public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
