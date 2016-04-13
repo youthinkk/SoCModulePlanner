@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ModulePreclusionJson {
 	private static ObjectMapper _mapper = new ObjectMapper();
-	private final File MODULE_INFO_FILE = new File ("ModulePreclusion.json");
+	private final File OUTPUT_FILE = new File ("ModulePreclusion.json");
 	
 	public void generate(File file) throws Exception {
 		HashMap<String, ArrayList<String>> list = new HashMap<String, ArrayList<String>>();
@@ -53,11 +53,11 @@ public class ModulePreclusionJson {
 	
 	private void writeFile(HashMap<String, ArrayList<String>> moduleList) {
 		try {
-			if (!MODULE_INFO_FILE.exists()) {
+			if (!OUTPUT_FILE.exists()) {
 				createFile();
 			}
 			
-			_mapper.writerWithDefaultPrettyPrinter().writeValue(MODULE_INFO_FILE, moduleList);
+			_mapper.writerWithDefaultPrettyPrinter().writeValue(OUTPUT_FILE, moduleList);
 		} catch (Exception e) {
 			// do nothing
 		}
@@ -68,7 +68,7 @@ public class ModulePreclusionJson {
 			HashMap<String, ArrayList<String>> list = new HashMap<String, ArrayList<String>>();
 			
 			// write empty module list
-			_mapper.writeValue(MODULE_INFO_FILE, list);
+			_mapper.writeValue(OUTPUT_FILE, list);
 		} catch (Exception e) {
 			// do nothing
 		}

@@ -12,7 +12,7 @@ import object.FocusArea;
 
 public class FocusAreaJson {
 	private static ObjectMapper _mapper = new ObjectMapper();
-	private final File MODULE_INFO_FILE = new File ("FocusArea.json");
+	private final File OUTPUT_FILE = new File ("FocusArea.json");
 	
 	public void generate() {
 		HashMap<String, FocusArea> focusAreaList = new HashMap<String, FocusArea>();
@@ -103,11 +103,11 @@ public class FocusAreaJson {
 
 	private void writeFile(HashMap<String, FocusArea> moduleList) {
 		try {
-			if (!MODULE_INFO_FILE.exists()) {
+			if (!OUTPUT_FILE.exists()) {
 				createFile();
 			}
 			
-			_mapper.writerWithDefaultPrettyPrinter().writeValue(MODULE_INFO_FILE, moduleList);
+			_mapper.writerWithDefaultPrettyPrinter().writeValue(OUTPUT_FILE, moduleList);
 		} catch (Exception e) {
 			// do nothing
 		}
@@ -118,7 +118,7 @@ public class FocusAreaJson {
 			HashMap<String, FocusArea> moduleList = new HashMap<String, FocusArea>();
 			
 			// write empty module list
-			_mapper.writeValue(MODULE_INFO_FILE, moduleList);
+			_mapper.writeValue(OUTPUT_FILE, moduleList);
 		} catch (Exception e) {
 			// do nothing
 		}

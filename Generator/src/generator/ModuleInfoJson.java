@@ -11,7 +11,7 @@ import object.ModuleInfo;
 public class ModuleInfoJson {
 	private static ObjectMapper _mapper = new ObjectMapper();
 	private final int TOTAL_NUMBER_OF_TYPE = 7;
-	private final File MODULE_INFO_FILE = new File ("ModuleInfo.json");
+	private final File OUTPUT_FILE = new File ("ModuleInfo.json");
 	
 	public void generate(File file) throws Exception {
 		TreeMap<String, ModuleInfo> list = new TreeMap<String, ModuleInfo>();
@@ -77,11 +77,11 @@ public class ModuleInfoJson {
 	
 	private void writeFile(TreeMap<String, ModuleInfo> moduleList) {
 		try {
-			if (!MODULE_INFO_FILE.exists()) {
+			if (!OUTPUT_FILE.exists()) {
 				createFile();
 			}
 			
-			_mapper.writerWithDefaultPrettyPrinter().writeValue(MODULE_INFO_FILE, moduleList);
+			_mapper.writerWithDefaultPrettyPrinter().writeValue(OUTPUT_FILE, moduleList);
 		} catch (Exception e) {
 			// do nothing
 		}
@@ -92,7 +92,7 @@ public class ModuleInfoJson {
 			TreeMap<String, ModuleInfo> moduleList = new TreeMap<String, ModuleInfo>();
 			
 			// write empty module list
-			_mapper.writeValue(MODULE_INFO_FILE, moduleList);
+			_mapper.writeValue(OUTPUT_FILE, moduleList);
 		} catch (Exception e) {
 			// do nothing
 		}

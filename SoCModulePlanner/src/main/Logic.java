@@ -26,4 +26,8 @@ public class Logic {
 	public TreeMap<String, ModuleInfo> getModuleList() {
 		return _moduleInfo;
 	}
+	
+	public void GetPlanner() {
+		
+	}
 }

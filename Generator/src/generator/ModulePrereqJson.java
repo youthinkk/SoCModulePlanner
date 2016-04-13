@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ModulePrereqJson {
 	private static ObjectMapper _mapper = new ObjectMapper();
-	private final File MODULE_INFO_FILE = new File ("ModulePrereq.json");
+	private final File OUTPUT_FILE = new File ("ModulePrereq.json");
 	
 	public void generate(File file) throws Exception {
 		HashMap<String, ArrayList<ArrayList<String>>> list = new HashMap<String, ArrayList<ArrayList<String>>>();
@@ -55,11 +55,11 @@ public class ModulePrereqJson {
 	
 	private void writeFile(HashMap<String, ArrayList<ArrayList<String>>> moduleList) {
 		try {
-			if (!MODULE_INFO_FILE.exists()) {
+			if (!OUTPUT_FILE.exists()) {
 				createFile();
 			}
 			
-			_mapper.writerWithDefaultPrettyPrinter().writeValue(MODULE_INFO_FILE, moduleList);
+			_mapper.writerWithDefaultPrettyPrinter().writeValue(OUTPUT_FILE, moduleList);
 		} catch (Exception e) {
 			// do nothing
 		}
@@ -70,7 +70,7 @@ public class ModulePrereqJson {
 			HashMap<String, ArrayList<ArrayList<String>>> list = new HashMap<String, ArrayList<ArrayList<String>>>();
 			
 			// write empty module list
-			_mapper.writeValue(MODULE_INFO_FILE, list);
+			_mapper.writeValue(OUTPUT_FILE, list);
 		} catch (Exception e) {
 			// do nothing
 		}

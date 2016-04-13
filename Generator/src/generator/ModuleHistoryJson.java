@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ModuleHistoryJson {
 	private static ObjectMapper _mapper = new ObjectMapper();
-	private final File MODULE_INFO_FILE = new File ("ModuleHistory.json");
+	private final File OUTPUT_FILE = new File ("ModuleHistory.json");
 	private final int TOTAL_NUMBER_OF_SEMESTER = 4;
 	
 	public void generate(File file) throws Exception {
@@ -55,11 +55,11 @@ public class ModuleHistoryJson {
 	
 	private void writeFile(HashMap<String, boolean[]> moduleList) {
 		try {
-			if (!MODULE_INFO_FILE.exists()) {
+			if (!OUTPUT_FILE.exists()) {
 				createFile();
 			}
 			
-			_mapper.writerWithDefaultPrettyPrinter().writeValue(MODULE_INFO_FILE, moduleList);
+			_mapper.writerWithDefaultPrettyPrinter().writeValue(OUTPUT_FILE, moduleList);
 		} catch (Exception e) {
 			// do nothing
 		}
@@ -70,7 +70,7 @@ public class ModuleHistoryJson {
 			HashMap<String, boolean[]> list = new HashMap<String, boolean[]>();
 			
 			// write empty module list
-			_mapper.writeValue(MODULE_INFO_FILE, list);
+			_mapper.writeValue(OUTPUT_FILE, list);
 		} catch (Exception e) {
 			// do nothing
 		}
