@@ -27,6 +27,8 @@ public class BasicInfo {
 		while (scanner.hasNextLine()) {
 			String input = scanner.nextLine();
 			String type = "";
+			boolean isGem = false;
+			boolean isSS = false;
 			
 			if (input.trim().isEmpty()) continue;
 			
@@ -40,6 +42,10 @@ public class BasicInfo {
 				if (matcher2.matches()) {
 					int level = (Integer.parseInt(matcher2.group(2))/1000)*1000;
 					System.out.println(level);
+					
+					if (matcher2.group(1).contains("SS")) {
+						isSS = true;
+					}
 				}
 				
 				System.out.println(matcher.group(4));
@@ -54,7 +60,6 @@ public class BasicInfo {
 			}
 			
 			matcher = pattern3.matcher(type);
-			boolean isGem = false;
 			
 			while (matcher.find()) {
 				String result = matcher.group(1);
@@ -66,6 +71,8 @@ public class BasicInfo {
 			
 			if (isGem) {
 				System.out.println("GEM");
+			} else if (isSS) {
+				System.out.println("SS");
 			} else {
 				System.out.println("Module");
 			}

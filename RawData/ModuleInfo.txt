@@ -32112,224 +32112,224 @@ SSA1201
 Singapore Society
 Sociology
 4
-Module
+SS
 
 SSA1202
 1000
 Southeast Asia: A Changing Region
 Southeast Asian Studies
 4
-Module
+SS
 
 SSA1203
 1000
 Singapore, Asia and American Power
 Southeast Asian Studies
 4
-Module
+SS
 
 SSA1207
 1000
 Singapore Literature in English: Selected Texts
 English Language & Literature
 4
-Module
+SS
 
 SSA1208
 1000
 Everyday Life of Chinese Singaporeans: Past & Present (taught in English)
 Chinese Studies
 4
-Module
+SS
 
 SSA2202
 2000
 Changing Landscapes of Singapore
 Geography
 4
-Module
+SS
 
 SSA2204
 2000
 Nation-Building in Singapore
 History
 4
-Module
+SS
 
 SSA2205
 2000
 Singapore and Japan: Historical and Contemporary Relationships
 Japanese Studies
 4
-Module
+SS
 
 SSA2206
 2000
 Islam and Contemporary Malay Society
 Malay Studies
 4
-Module
+SS
 
 SSA2208
 2000
 Singapore's Military History
 History
 4
-Module
+SS
 
 SSA2209
 2000
 Government and Politics of Singapore
 Political Science
 4
-Module
+SS
 
 SSA2211
 2000
 The Evolution of a Global City-State
 History
 4
-Module
+SS
 
 SSA2214
 2000
 Singapore and India: Emerging Relations
 South Asian Studies Programme
 4
-Module
+SS
 
 SSA2215
 2000
 The Biophysical Environment of Singapore
 Geography
 4
-Module
+SS
 
 SSA2218
 2000
 Singapore Film: Performance of Identity
 English Language & Literature
 4
-Module
+SS
 
 SSA2219
 2000
 South Asia in Singapore
 South Asian Studies Programme
 4
-Module
+SS
 
 SSA2220
 2000
 Global Economic Dimensions of Singapore
 Economics
 4
-Module
+SS
 
 SSA2220T
 2000
 Global Economic Dimensions Of Singapore
 Bachelor Of Technology Programme
 4
-Module
+SS
 
 SSA3201
 3000
 Singapore English-Language Theatre
 English Language & Literature
 4
-Module
+SS
 
 SSA3203
 3000
 The Malays of Singapore
 Malay Studies
 4
-Module
+SS
 
 SSA3205
 3000
 Singapore's Foreign Policy
 Political Science
 4
-Module
+SS
 
 SSB1204
 1000
 Labour Law In Singapore
 Strategy And Policy
 4
-Module
+SS
 
 SSB1204T
 1000
 Labour Law In Singapore
 Bachelor Of Technology Programme
 4
-Module
+SS
 
 SSB2216T
 2000
 Employee Management In Singapore
 Bachelor Of Technology Programme
 4
-Module
+SS
 
 SSB2217
 2000
 Taxation and the Singapore Miracle
 Accounting
 4
-Module
+SS
 
 SSD1203
 1000
 Real Estate Development & Investment Law
 Real Estate
 4
-Module
+SS
 
 SSD2210
 2000
 Managing Singapore's Built Environment
 Building
 4
-Module
+SS
 
 SSD2213
 2000
 Singapore Urban History & Architecture
 Architecture
 4
-Module
+SS
 
 SSE1201
 1000
 Building a Dynamic Singapore - Role of Engineers
 Division Of Engineering And Tech Mgt
 4
-Module
+SS
 
 SSM1206
 1000
 Health and Wellness for Older Adults
 Nursing/Alice Lee Ctr For Nursing Stud
 4
-Module
+SS
 
 SSS1207
 1000
 Natural Heritage of Singapore
 Biological Sciences
 4
-Module
+SS
 
 SSY2223
 2000
 Western Music within a Singaporean Context
 Yong Siew Toh Conservatory Of Music
 4
-Module
+SS
 
 ST1131
 1000
@@ -34905,7 +34905,7 @@ USS2105
 University Scholars Seminar
 University Scholars Programme
 4
-Module
+SS
 
 UTC1102B
 1000
@@ -36781,392 +36781,392 @@ YSS1203
 Principles of Economics
 Yale-NUS College
 5
-Module
+SS
 
 YSS1205
 1000
 Introduction to Game Theory
 Yale-NUS College
 5
-Module
+SS
 
 YSS1206
 1000
 Introduction to Comparative Politics
 Yale-NUS College
 5
-Module
+SS
 
 YSS1207
 1000
 Introduction to Urban Studies
 Yale-NUS College
 5
-Module
+SS
 
 YSS2201
 2000
 Understanding Behaviour and Cognition
 Yale-NUS College
 5
-Module
+SS
 
 YSS2202
 2000
 Introduction to International Relations
 Yale-NUS College
 5
-Module
+SS
 
 YSS2203
 2000
 Intermediate Microeconomics
 Yale-NUS College
 5
-Module
+SS
 
 YSS2207
 2000
 Introduction to Social Psychology
 Yale-NUS College
 5
-Module
+SS
 
 YSS2208
 2000
 Ancient Greek Political Philosophy
 Yale-NUS College
 5
-Module
+SS
 
 YSS2209
 2000
 The Anthropological Imagination
 Yale-NUS College
 5
-Module
+SS
 
 YSS2211
 2000
 Econometrics
 Yale-NUS College
 5
-Module
+SS
 
 YSS2212
 2000
 Firms' Strategies and Market Competition
 Yale-NUS College
 5
-Module
+SS
 
 YSS2213
 2000
 Globalization: Past, Present and Future
 Yale-NUS College
 5
-Module
+SS
 
 YSS2214
 2000
 Intermediate Macroeconomics
 Yale-NUS College
 5
-Module
+SS
 
 YSS2216
 2000
 Statistics and Research Methods for Psychology
 Yale-NUS College
 5
-Module
+SS
 
 YSS2217
 2000
 Political Concepts
 Yale-NUS College
 5
-Module
+SS
 
 YSS2218
 2000
 International Political Economy
 Yale-NUS College
 5
-Module
+SS
 
 YSS2219
 2000
 Divided Cities
 Yale-NUS College
 5
-Module
+SS
 
 YSS3201
 3000
 International Migration
 Yale-NUS College
 5
-Module
+SS
 
 YSS3202
 3000
 Ethnography
 Yale-NUS College
 5
-Module
+SS
 
 YSS3203
 3000
 Behavioral Economics
 Yale-NUS College
 5
-Module
+SS
 
 YSS3204
 3000
 Development Economics
 Yale-NUS College
 5
-Module
+SS
 
 YSS3206
 3000
 Law and Economics
 Yale-NUS College
 5
-Module
+SS
 
 YSS3207
 3000
 Advanced Econometrics
 Yale-NUS College
 5
-Module
+SS
 
 YSS3208
 3000
 Advanced Microeconomics
 Yale-NUS College
 5
-Module
+SS
 
 YSS3210
 3000
 International Security
 Yale-NUS College
 5
-Module
+SS
 
 YSS3211
 3000
 Human Rights
 Yale-NUS College
 5
-Module
+SS
 
 YSS3212
 3000
 Chinese Politics
 Yale-NUS College
 5
-Module
+SS
 
 YSS3213
 3000
 Culture and Violence
 Yale-NUS College
 5
-Module
+SS
 
 YSS3214
 3000
 Abnormal Psychology
 Yale-NUS College
 5
-Module
+SS
 
 YSS3215
 3000
 Cognitive Psychology
 Yale-NUS College
 5
-Module
+SS
 
 YSS3216
 3000
 Current Issues in Urban Studies
 Yale-NUS College
 5
-Module
+SS
 
 YSS3217
 3000
 Urbanization in China
 Yale-NUS College
 5
-Module
+SS
 
 YSS3218
 3000
 Urbanization in Southeast Asia
 Yale-NUS College
 5
-Module
+SS
 
 YSS3219
 3000
 Developmental Psychology
 Yale-NUS College
 5
-Module
+SS
 
 YSS3220
 3000
 Political Economy
 Yale-NUS College
 5
-Module
+SS
 
 YSS3221
 3000
 Politics of Southeast Asia
 Yale-NUS College
 5
-Module
+SS
 
 YSS3222
 3000
 Urban Theory
 Yale-NUS College
 5
-Module
+SS
 
 YSS3223
 3000
 Asian Medicine, the Body and Globalization
 Yale-NUS College
 5
-Module
+SS
 
 YSS3224
 3000
 International Finance
 Yale-NUS College
 5
-Module
+SS
 
 YSS3225
 3000
 Global Governance
 Yale-NUS College
 5
-Module
+SS
 
 YSS3226
 3000
 Conflict and Cooperation in East Asia
 Yale-NUS College
 5
-Module
+SS
 
 YSS3227
 3000
 The Economy-Security Nexus
 Yale-NUS College
 5
-Module
+SS
 
 YSS3228
 3000
 Health Psychology
 Yale-NUS College
 5
-Module
+SS
 
 YSS3229
 3000
 Urbanization and the Environment
 Yale-NUS College
 5
-Module
+SS
 
 YSS3230
 3000
 HIV/AIDS: From Microbes to Nations
 Yale-NUS College
 5
-Module
+SS
 
 YSS3231
 3000
 Methods in the Social Sciences
 Yale-NUS College
 5
-Module
+SS
 
 YSS3232
 3000
 Crime and Punishment
 Yale-NUS College
 5
-Module
+SS
 
 YSS3234
 3000
 Politics of Identity in Developing Countries
 Yale-NUS College
 5
-Module
+SS
 
 YSS3235
 3000
 Urban Spatial Reasoning and Visualization
 Yale-NUS College
 5
-Module
+SS
 
 YSS3236
 3000
 Foreign Policy and Diplomacy: Issues and Practice
 Yale-NUS College
 5
-Module
+SS
 
 YSS3237
 3000
 Gender Perspectives in Anthropology
 Yale-NUS College
 5
-Module
+SS
 
 YSS3238
 3000
 US Foreign Policy
 Yale-NUS College
 5
-Module
+SS
 
 YSS3239
 3000
 Living on the Edge: The Experience of Peri-urbanization
 Yale-NUS College
 5
-Module
+SS
 
 YSS4201
 4000
 Social Psychology Lab
 Yale-NUS College
 5
-Module
+SS
 
 YSS4202
 4000
 Goals and Motivation
 Yale-NUS College
 5
-Module
+SS
 
 ZB3288
 3000
