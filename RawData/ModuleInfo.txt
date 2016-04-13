@@ -3902,49 +3902,49 @@ CM1111
 Inorganic Chemistry 1
 Chemistry
 4
-Module
+Science
 
 CM1121
 1000
 Organic Chemistry 1
 Chemistry
 4
-Module
+Science
 
 CM1131
 1000
 Physical Chemistry 1
 Chemistry
 4
-Module
+Science
 
 CM1191
 1000
 Experiments in Chemistry 1
 Chemistry
 4
-Module
+Science
 
 CM1401
 1000
 Chemistry for Life Sciences
 Chemistry
 4
-Module
+Science
 
 CM1402
 1000
 General Chemistry
 Chemistry
 4
-Module
+Science
 
 CM1417
 1000
 Fundamentals of Chemistry
 Chemistry
 4
-Module
+Science
 
 CM1417X
 1000
@@ -3958,14 +3958,14 @@ CM1501
 Organic Chemistry for Engineers
 Chemistry
 4
-Module
+Science
 
 CM1502
 1000
 General and Physical Chemistry for Engineers
 Chemistry
 4
-Module
+Science
 
 CM1502X
 1000
@@ -19715,7 +19715,7 @@ LSM1301
 General Biology
 Biological Sciences
 4
-Module
+Science
 
 LSM1301X
 1000
@@ -19729,14 +19729,14 @@ LSM1302
 Genes and Society
 Biological Sciences
 4
-Module
+Science
 
 LSM1303
 1000
 Animal Behaviour
 Biological Sciences
 4
-Module
+Science
 
 LSM1401
 1000
@@ -20394,7 +20394,7 @@ MA1104
 Multivariable Calculus
 Mathematics
 4
-Module
+Science
 
 MA1301
 1000
@@ -20478,7 +20478,7 @@ MA2101
 Linear Algebra II
 Mathematics
 4
-Module
+Science
 
 MA2101S
 2000
@@ -20492,7 +20492,7 @@ MA2108
 Mathematical Analysis I
 Mathematics
 4
-Module
+Science
 
 MA2108S
 2000
@@ -20520,14 +20520,14 @@ MA2213
 Numerical Analysis I
 Mathematics
 4
-Module
+Science
 
 MA2214
 2000
 Combinatorics and Graphs I
 Mathematics
 4
-Module
+Science
 
 MA2216
 2000
@@ -20569,7 +20569,7 @@ MA2501
 Differential Equations and Systems
 Mathematics
 4
-Module
+Science
 
 MA2991
 2000
@@ -25658,35 +25658,35 @@ PC1141
 Introduction to Classical Mechanics
 Physics
 4
-Module
+Science
 
 PC1142
 1000
 Introduction to Thermodynamics and Optics
 Physics
 4
-Module
+Science
 
 PC1143
 1000
 Introduction to Electricity & Magnetism
 Physics
 4
-Module
+Science
 
 PC1144
 1000
 Introduction to Modern Physics
 Physics
 4
-Module
+Science
 
 PC1221
 1000
 Fundamentals of Physics I
 Physics
 4
-Module
+Science
 
 PC1221X
 1000
@@ -25700,7 +25700,7 @@ PC1222
 Fundamentals of Physics II
 Physics
 4
-Module
+Science
 
 PC1222X
 1000
@@ -25735,14 +25735,14 @@ PC1421
 Physics for Life Sciences
 Physics
 4
-Module
+Science
 
 PC1431
 1000
 Physics IE
 Physics
 4
-Module
+Science
 
 PC1431X
 1000
@@ -25756,7 +25756,7 @@ PC1432
 Physics IIE
 Physics
 4
-Module
+Science
 
 PC1432X
 1000
@@ -25770,7 +25770,7 @@ PC1433
 Mechanics and Waves
 Physics
 4
-Module
+Science
 
 PC1991
 1000
@@ -32371,14 +32371,14 @@ ST2132
 Mathematical Statistics
 Statistics & Applied Probability
 4
-Module
+Science
 
 ST2137
 2000
 Computer Aided Data Analysis
 Statistics & Applied Probability
 4
-Module
+Science
 
 ST2288
 2000
