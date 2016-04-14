@@ -5,16 +5,22 @@ public class Constant {
 	public final static String ASK_MATRICULATION_YEAR = ASK_DEFAULT + "your matriculation year:";
 	public final static String ASK_MAJOR = ASK_DEFAULT + "your major:";
 	public final static String ASK_FOCUS_AREA = ASK_DEFAULT + "your focus area:";
-	public final static String ASK_TAKEN_MODULES = ASK_DEFAULT + "the modules you have taken or been exempted:";
-	public final static String ASK_LIKED_MODULES = ASK_DEFAULT + "the modules you want to take: ";
+	public final static String ASK_MODULES_TAKEN = ASK_DEFAULT + "the modules you have taken or been exempted:";
+	public final static String ASK_MODULES_WHITELIST = ASK_DEFAULT + "the modules you want to take: ";
+	public final static String ASK_PLANNING_SEMESTER = ASK_DEFAULT + "the semester you wish to start planning:";
 	public final static String ASK_H2_MATH_TAKEN = "Have you taken A level or H2 Mathematics?";
 	public final static String ASK_H2_PHYSICS_TAKEN = "Have you taken A level or H2 Physics?";
 	public final static String ASK_FROM_POLY = "Were you from polytechnic?";
 	
+	public final static String ERROR_MATRICULATION_YEAR = "Matriculation year is not selected.";
+	public final static String ERROR_MAJOR = "Major is not selected.";
+	public final static String ERROR_FOCUS_AREA = "Focus area is not selected.";
+	public final static String ERROR_PLANNING_SEMESTER = "The semester to start planning is not selected.";
+	public final static String ERROR_GENERIC_NOT_ANSWERED = "The question is not answered.";
+	
 	public final static String REPLY_YES = "Yes";
 	public final static String REPLY_NO = "No";
 
-	public final static String ACADEMIC_YEAR_2010_2011 = "AY2010/2011";
 	public final static String ACADEMIC_YEAR_2011_2012 = "AY2011/2012";
 	public final static String ACADEMIC_YEAR_2012_2013 = "AY2012/2013";
 	public final static String ACADEMIC_YEAR_2013_2014 = "AY2013/2014";

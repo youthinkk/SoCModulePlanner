@@ -26,12 +26,14 @@ public class MainFrame extends JFrame {
 	private String _major;
 	private String _focusArea;
 	
-	private ArrayList<String> _takenModules;
-	private ArrayList<String> _likedModules;
+	private ArrayList<String> _modulesTaken;
+	private ArrayList<String> _modulesWhitelist;
 	
 	private boolean _isMathTaken;
 	private boolean _isPhysicsTaken;
 	private boolean _isFromPoly;
+	
+	private int _planSemester = 1;
 	
 	private final int DEFAULT_SELECTED_INDEX = -1;
 	
@@ -43,7 +45,7 @@ public class MainFrame extends JFrame {
 				_matriculationYear = _questionPanel.comboBox.getSelectedItem().toString();
 				askMajor();
 			} else {
-				showErrorDialog("Matriculation year is not selected.");
+				showErrorDialog(Constant.ERROR_MATRICULATION_YEAR);
 			}
 		}
 		
@@ -62,7 +64,7 @@ public class MainFrame extends JFrame {
 					askMath();
 				}
 			} else {
-				showErrorDialog("Major is not selected.");
+				showErrorDialog(Constant.ERROR_MAJOR);
 			}
 		}
 		
@@ -76,7 +78,7 @@ public class MainFrame extends JFrame {
 				_focusArea = _questionPanel.comboBox.getSelectedItem().toString();
 				askMath();
 			} else {
-				showErrorDialog("Focus area is not selected.");
+				showErrorDialog(Constant.ERROR_FOCUS_AREA);
 			}
 		}
 		
@@ -90,7 +92,7 @@ public class MainFrame extends JFrame {
 				_isMathTaken = _questionPanel.comboBox.getSelectedItem().equals(Constant.REPLY_YES);
 				askPhysics();
 			} else {
-				showErrorDialog("The question is not answered.");
+				showErrorDialog(Constant.ERROR_GENERIC_NOT_ANSWERED);
 			}
 		}
 		
@@ -104,7 +106,7 @@ public class MainFrame extends JFrame {
 				_isPhysicsTaken = _questionPanel.comboBox.getSelectedItem().equals(Constant.REPLY_YES);
 				askPreUni();
 			} else {
-				showErrorDialog("The question is not answered.");
+				showErrorDialog(Constant.ERROR_GENERIC_NOT_ANSWERED);
 			}
 		}
 		
@@ -116,29 +118,47 @@ public class MainFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (_questionPanel.comboBox.getSelectedIndex() != -1) {
 				_isFromPoly = _questionPanel.comboBox.getSelectedItem().equals(Constant.REPLY_YES);
-				askTakenModules();
+				askPlanningSemester();
 			} else {
-				showErrorDialog("The question is not answered.");
+				showErrorDialog(Constant.ERROR_GENERIC_NOT_ANSWERED);
 			}
 		}
 		
 	};
 	
-	private ActionListener _takenModulesListener = new ActionListener() {
+	private ActionListener _planSemesterListner = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			_takenModules = _modulePanel.getSelectedList();
-			askLikedModules();
+			if (_questionPanel.comboBox.getSelectedIndex() != -1) {
+				try {
+					_planSemester = Integer.parseInt(_questionPanel.comboBox.getSelectedItem().toString());
+				} catch (Exception ex) {
+					_planSemester = 1;
+				}
+				askModulesTaken();
+			} else {
+				showErrorDialog(Constant.ERROR_PLANNING_SEMESTER);
+			}	
 		}
 		
 	};
 	
-	private ActionListener _likedModulesListener = new ActionListener() {
+	private ActionListener _modulesTakenListener = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			_likedModules = _modulePanel.getSelectedList();
+			_modulesTaken = _modulePanel.getSelectedList();
+			askModulesWhitelist();
+		}
+		
+	};
+	
+	private ActionListener _modulesWhitelistListener = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			_modulesWhitelist = _modulePanel.getSelectedList();
 			executePlanner();
 		}
 		
@@ -169,7 +189,6 @@ public class MainFrame extends JFrame {
 		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2013_2014);
 		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2012_2013);
 		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2011_2012);
-		_questionPanel.comboBox.addItem(Constant.ACADEMIC_YEAR_2010_2011);
 		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
 		
 		_questionPanel.nextButton.addActionListener(_matriculationYearListener);
@@ -250,32 +269,48 @@ public class MainFrame extends JFrame {
 		_questionPanel.nextButton.addActionListener(_askPreUniListener);
 	}
 	
-	private void askTakenModules() {
+	private void askPlanningSemester() {
 		clearActionListener();
 		
-		_modulePanel.queryLabel.setText(Constant.ASK_TAKEN_MODULES);
+		_questionPanel.label.setText(Constant.ASK_PLANNING_SEMESTER);
+		_questionPanel.comboBox.removeAllItems();
+		_questionPanel.comboBox.addItem("1");
+		_questionPanel.comboBox.addItem("2");
+		_questionPanel.comboBox.addItem("3");
+		_questionPanel.comboBox.addItem("4");
+		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
+		
+		_questionPanel.nextButton.addActionListener(_planSemesterListner);
+	}
+	
+	private void askModulesTaken() {
+		clearActionListener();
+		
+		_modulePanel.queryLabel.setText(Constant.ASK_MODULES_TAKEN);
 		_modulePanel.availableLabel.setText(Constant.LABEL_AVAILABLE_MODULES);
 		_modulePanel.selectedLabel.setText(Constant.LABEL_TAKEN_MODULES);
 		_modulePanel.clearSelectedList();
-		_modulePanel.nextButton.addActionListener(_takenModulesListener);
+		_modulePanel.nextButton.addActionListener(_modulesTakenListener);
 		
 		getContentPane().remove(_questionPanel);
 		getContentPane().add(_modulePanel);
 		setSize(_modulePanel.getPreferredSize());
 	}
 	
-	private void askLikedModules() {
+	private void askModulesWhitelist() {
 		clearActionListener();
 		
-		_modulePanel.queryLabel.setText(Constant.ASK_LIKED_MODULES);
+		_modulePanel.queryLabel.setText(Constant.ASK_MODULES_WHITELIST);
 		_modulePanel.availableLabel.setText(Constant.LABEL_AVAILABLE_MODULES);
 		_modulePanel.selectedLabel.setText(Constant.LABEL_LIKED_MODULES);
 		_modulePanel.clearSelectedList();
-		_modulePanel.nextButton.addActionListener(_likedModulesListener);
+		_modulePanel.nextButton.addActionListener(_modulesWhitelistListener);
 	}
 	
 	private void executePlanner() {
 		clearActionListener();
+		
+		_logic.getPlanner(_major, _focusArea, _modulesTaken, _modulesWhitelist, _isMathTaken, _isPhysicsTaken, _isFromPoly);
 	}
 	
 	private void addFocusAreaAfterAY1516(JComboBox<String> combo) {

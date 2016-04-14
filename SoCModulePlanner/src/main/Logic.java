@@ -27,7 +27,11 @@ public class Logic {
 		return _moduleInfo;
 	}
 	
-	public void GetPlanner() {
+	public ArrayList<ArrayList<String>> getPlanner(String major, String focusArea, 
+			ArrayList<String> modulesTaken, ArrayList<String> modulesWhitelist, 
+			boolean isMathTaken, boolean isPhysicsTaken, boolean isFromPoly) {
+		ArrayList<ArrayList<String>> planner = new ArrayList<ArrayList<String>>();
 		
+		return planner;
 	}
 }
