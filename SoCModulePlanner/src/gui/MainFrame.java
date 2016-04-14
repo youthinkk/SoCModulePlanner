@@ -29,6 +29,10 @@ public class MainFrame extends JFrame {
 	private ArrayList<String> _takenModules;
 	private ArrayList<String> _likedModules;
 	
+	private boolean _isMathTaken;
+	private boolean _isPhysicsTaken;
+	private boolean _isFromPoly;
+	
 	private final int DEFAULT_SELECTED_INDEX = -1;
 	
 	private ActionListener _matriculationYearListener = new ActionListener() {
@@ -55,7 +59,7 @@ public class MainFrame extends JFrame {
 				if (_major.equals(Constant.MAJOR_COMPUTER_SCIENCE)) {
 					askFocusArea();
 				} else {
-					askTakenModules();
+					askMath();
 				}
 			} else {
 				showErrorDialog("Major is not selected.");
@@ -70,9 +74,51 @@ public class MainFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (_questionPanel.comboBox.getSelectedIndex() != -1) {
 				_focusArea = _questionPanel.comboBox.getSelectedItem().toString();
-				askTakenModules();
+				askMath();
 			} else {
 				showErrorDialog("Focus area is not selected.");
+			}
+		}
+		
+	};
+	
+	private ActionListener _askMathListener = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (_questionPanel.comboBox.getSelectedIndex() != -1) {
+				_isMathTaken = _questionPanel.comboBox.getSelectedItem().equals(Constant.REPLY_YES);
+				askPhysics();
+			} else {
+				showErrorDialog("The question is not answered.");
+			}
+		}
+		
+	};
+	
+	private ActionListener _askPhysicsListener = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (_questionPanel.comboBox.getSelectedIndex() != -1) {
+				_isPhysicsTaken = _questionPanel.comboBox.getSelectedItem().equals(Constant.REPLY_YES);
+				askPreUni();
+			} else {
+				showErrorDialog("The question is not answered.");
+			}
+		}
+		
+	};
+	
+	private ActionListener _askPreUniListener = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (_questionPanel.comboBox.getSelectedIndex() != -1) {
+				_isFromPoly = _questionPanel.comboBox.getSelectedItem().equals(Constant.REPLY_YES);
+				askTakenModules();
+			} else {
+				showErrorDialog("The question is not answered.");
 			}
 		}
 		
@@ -163,6 +209,45 @@ public class MainFrame extends JFrame {
 		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
 		
 		_questionPanel.nextButton.addActionListener(_focusAreaListener);
+	}
+	
+	private void askMath() {
+		clearActionListener();
+		
+		_questionPanel.label.setText(Constant.ASK_H2_MATH_TAKEN);
+		
+		_questionPanel.comboBox.removeAllItems();
+		_questionPanel.comboBox.addItem(Constant.REPLY_YES);
+		_questionPanel.comboBox.addItem(Constant.REPLY_NO);
+		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
+		
+		_questionPanel.nextButton.addActionListener(_askMathListener);
+	}
+	
+	private void askPhysics() {
+		clearActionListener();
+		
+		_questionPanel.label.setText(Constant.ASK_H2_PHYSICS_TAKEN);
+
+		_questionPanel.comboBox.removeAllItems();
+		_questionPanel.comboBox.addItem(Constant.REPLY_YES);
+		_questionPanel.comboBox.addItem(Constant.REPLY_NO);
+		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
+		
+		_questionPanel.nextButton.addActionListener(_askPhysicsListener);
+	}
+	
+	private void askPreUni() {
+		clearActionListener();
+		
+		_questionPanel.label.setText(Constant.ASK_FROM_POLY);
+
+		_questionPanel.comboBox.removeAllItems();
+		_questionPanel.comboBox.addItem(Constant.REPLY_YES);
+		_questionPanel.comboBox.addItem(Constant.REPLY_NO);
+		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
+		
+		_questionPanel.nextButton.addActionListener(_askPreUniListener);
 	}
 	
 	private void askTakenModules() {

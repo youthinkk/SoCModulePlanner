@@ -7,6 +7,12 @@ public class Constant {
 	public final static String ASK_FOCUS_AREA = ASK_DEFAULT + "your focus area:";
 	public final static String ASK_TAKEN_MODULES = ASK_DEFAULT + "the modules you have taken or been exempted:";
 	public final static String ASK_LIKED_MODULES = ASK_DEFAULT + "the modules you want to take: ";
+	public final static String ASK_H2_MATH_TAKEN = "Have you taken A level or H2 Mathematics?";
+	public final static String ASK_H2_PHYSICS_TAKEN = "Have you taken A level or H2 Physics?";
+	public final static String ASK_FROM_POLY = "Were you from polytechnic?";
+	
+	public final static String REPLY_YES = "Yes";
+	public final static String REPLY_NO = "No";
 
 	public final static String ACADEMIC_YEAR_2010_2011 = "AY2010/2011";
 	public final static String ACADEMIC_YEAR_2011_2012 = "AY2011/2012";
