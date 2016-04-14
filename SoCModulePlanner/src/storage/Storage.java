@@ -89,4 +89,20 @@ public class Storage extends StorageFile {
 		}
 		return focusAreaList;
 	}
+	
+	public static HashMap<String, ArrayList<ArrayList<ArrayList<String>>>> getGradRequirement() {
+		HashMap<String, ArrayList<ArrayList<ArrayList<String>>>> focusAreaList = 
+				new HashMap<String, ArrayList<ArrayList<ArrayList<String>>>>();
+
+		try {
+			TypeReference<HashMap<String, ArrayList<ArrayList<ArrayList<String>>>>> typeRef =
+					new TypeReference<HashMap<String, ArrayList<ArrayList<ArrayList<String>>>>>() { };
+
+					focusAreaList = _mapper.readValue(GRAD_REQUIREMENT_FILE, typeRef);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return focusAreaList;
+		}
+		return focusAreaList;
+	}
 }

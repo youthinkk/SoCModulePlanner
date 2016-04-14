@@ -310,7 +310,8 @@ public class MainFrame extends JFrame {
 	private void executePlanner() {
 		clearActionListener();
 		
-		_logic.getPlanner(_major, _focusArea, _modulesTaken, _modulesWhitelist, _isMathTaken, _isPhysicsTaken, _isFromPoly);
+		_logic.getPlanner(_major, _focusArea, _modulesTaken, _modulesWhitelist, 
+				_isMathTaken, _isPhysicsTaken, _isFromPoly, _planSemester);
 	}
 	
 	private void addFocusAreaAfterAY1516(JComboBox<String> combo) {

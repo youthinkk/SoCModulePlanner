@@ -14,6 +14,7 @@ public class Logic {
 	private HashMap<String, ArrayList<String>> _modulePreclusion;
 	private HashMap<String, boolean[]> _moduleHistory;
 	private HashMap<String, FocusArea> _focusArea;
+	private HashMap<String, ArrayList<ArrayList<ArrayList<String>>>> _gradRequirement;
 	
 	public Logic() {
 		_moduleInfo = Storage.getModuleInfo();
@@ -21,6 +22,7 @@ public class Logic {
 		_modulePreclusion = Storage.getModulePreclusion();
 		_moduleHistory = Storage.getModuleHistory();
 		_focusArea = Storage.getFocusArea();
+		_gradRequirement = Storage.getGradRequirement();
 	}
 	
 	public TreeMap<String, ModuleInfo> getModuleList() {
@@ -29,7 +31,7 @@ public class Logic {
 	
 	public ArrayList<ArrayList<String>> getPlanner(String major, String focusArea, 
 			ArrayList<String> modulesTaken, ArrayList<String> modulesWhitelist, 
-			boolean isMathTaken, boolean isPhysicsTaken, boolean isFromPoly) {
+			boolean isMathTaken, boolean isPhysicsTaken, boolean isFromPoly, int planSemester) {
 		ArrayList<ArrayList<String>> planner = new ArrayList<ArrayList<String>>();
 		
 		return planner;
