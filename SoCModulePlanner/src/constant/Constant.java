@@ -66,4 +66,6 @@ public class Constant {
 	public final static String REQUIREMENT_SCIENCE1 = "Science1";
 	public final static String REQUIREMENT_SCIENCE2 = "Science2";
 	public final static String REQUIREMENT_SCIENCE3 = "Science3";
+	
+	public final static String DEPARTMENT_COMPUTER_SCIENCE = "Computer Science";
 }

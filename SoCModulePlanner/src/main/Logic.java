@@ -37,11 +37,22 @@ public class Logic {
 		
 		FocusArea focusAreaSet = focusArea != null ? _focusArea.get(focusArea) : null;
 		ArrayList<ArrayList<ArrayList<String>>> requirement = _gradRequirement.get(major);
-		ArrayList<String> modulesToBeTaken = getModulesToBeTaken(requirement, modulesTaken);
 		int credits = getCurrentCredits(modulesTaken, isFromPoly);
+		IAnalyseMajor analyseMajor = null;
 		
-		for (String module: modulesToBeTaken) {
-			System.out.println(module);
+		switch (major) {
+			case Constant.MAJOR_COMPUTER_SCIENCE:
+				analyseMajor = new AnalyseComputerScience(_moduleInfo, requirement, focusAreaSet, 
+						modulesTaken, modulesWhitelist, isMathTaken, isPhysicsTaken, isFromPoly);
+				break;
+		}
+		
+		if (analyseMajor != null) {
+			ArrayList<String> modulesToBeTaken = analyseMajor.getModulesToBeTaken().getModulesToBeTaken();
+
+			for (String module: modulesToBeTaken) {
+				System.out.println(module);
+			}
 		}
 		
 		return planner;
@@ -64,15 +75,31 @@ public class Logic {
 	 * @return required modules that have not been taken
 	 */
 	private ArrayList<String> getModulesToBeTaken(ArrayList<ArrayList<ArrayList<String>>> requirement,
-			ArrayList<String> modulesTaken) {
-		ArrayList<String> modulesToBeTaken = new ArrayList<String>();
+			ArrayList<String> modulesTaken, FocusArea focusArea) {
 		
-		for(ArrayList<ArrayList<String>> moduleSets: requirement) {
+		ArrayList<String> modulesToBeTaken = new ArrayList<String>();
+		int amountOfPrimariesTaken = 0;
+		int amountOf4000Taken = 0;
+		boolean isPrimaries4000 = false;
+		
+		for (ArrayList<ArrayList<String>> moduleSets: requirement) {
 			if (moduleSets.size() == 1) { // for normal one set
 				ArrayList<String> modules = moduleSets.get(0);
 				for (String module: modules) {
 					if (!modulesTaken.contains(module)) {
 						modulesToBeTaken.add(module);
+					} else {
+						modulesTaken.remove(module);
+						
+						// check if the module is one of the focus area primaries
+						if (isPrimaries(module, focusArea.getPrimaries())) {
+							amountOfPrimariesTaken += 1;
+							
+							// check if the primaries is 4000
+							if (!isPrimaries4000) {
+								isPrimaries4000 = _moduleInfo.get(module).getLevel() == 4000;
+							}
+						} 
 					}
 				}
 			} else { 		// for EQUIVALENCE sets
@@ -95,11 +122,45 @@ public class Logic {
 				for (String module: matchedModules) {
 					if (!modulesTaken.contains(module)) {
 						modulesToBeTaken.add(module);
+					} else {
+						modulesTaken.remove(module);
 					}
 				}
 			}
 		}
+		modulesToBeTaken = removeGemSciSs(modulesToBeTaken, modulesTaken);
 		
+		return modulesToBeTaken;
+	}
+	
+	private boolean isPrimaries(String module, ArrayList<String> primaries) {
+		return primaries.contains(module);
+	}
+	
+	private ArrayList<String> removeGemSciSs(ArrayList<String> modulesToBeTaken, ArrayList<String> modulesTaken) {
+		for (String module: modulesTaken) {
+			String type = _moduleInfo.get(module).getType();
+			
+			if (type.equals("GEM")) {
+				if (modulesToBeTaken.contains(Constant.REQUIREMENT_GEM2)) {
+					modulesToBeTaken.remove(Constant.REQUIREMENT_GEM2);
+				} else if (modulesTaken.contains(Constant.REQUIREMENT_GEM1)) {
+					modulesToBeTaken.remove(Constant.REQUIREMENT_GEM1);
+				}
+			} else if (type.equals("Science")) {
+				if (modulesToBeTaken.contains(Constant.REQUIREMENT_SCIENCE3)) {
+					modulesToBeTaken.remove(Constant.REQUIREMENT_SCIENCE3);
+				} else if (modulesToBeTaken.contains(Constant.REQUIREMENT_SCIENCE2)) {
+					modulesToBeTaken.remove(Constant.REQUIREMENT_SCIENCE2);
+				} else if (modulesToBeTaken.contains(Constant.REQUIREMENT_SCIENCE1)) {
+					modulesToBeTaken.remove(Constant.REQUIREMENT_SCIENCE1);
+				} 
+			} else if (type.equals("SS")) {
+				if (modulesToBeTaken.contains(Constant.REQUIREMENT_SS)) {
+					modulesToBeTaken.remove(Constant.REQUIREMENT_SS);
+				}
+			}
+		}
 		return modulesToBeTaken;
 	}
 }
