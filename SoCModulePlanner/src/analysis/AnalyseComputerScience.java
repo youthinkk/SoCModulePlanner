@@ -2,6 +2,7 @@ package analysis;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.TreeMap;
 
 import common.FilteredRequirement;
@@ -23,7 +24,7 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 	private boolean _isFromPoly;
 	
 	private ArrayList<String> _modulesToBeTaken = new ArrayList<String>();
-	private ArrayList<String> _modulesFulfillRequirement = new ArrayList<String>();
+	private HashSet<String> _modulesFulfillRequirement = new HashSet<String>();
 	private boolean _isPrimaries4000Taken = false;
 	private int _amountOf4000Taken = 0;
 	private int _amountOfPrimariesTaken = 0;
@@ -55,6 +56,7 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 	
 	private void analyse() {
 		countAmountOf4000Taken();
+		analyseModulesFulfillment();
 		filterCoreModules();
 		filterFocusAreaPrimaries();
 		filterScienceGemSs();
@@ -84,12 +86,19 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 		}
 	}
 	
+	private void analyseModulesFulfillment() {
+		for (String module: _modulesTaken) {
+			ArrayList<String> prereq = getPrereq(module);
+			_modulesFulfillRequirement.addAll(prereq);
+		}
+	}
+	
 	private void filterCoreModules() {
 		for (ArrayList<ArrayList<String>> moduleSets: _requirement) {
 			if (moduleSets.size() == 1) { // for normal one set
 				ArrayList<String> modules = moduleSets.get(0);
 				for (String module: modules) {
-					if (!_modulesTaken.contains(module)) {
+					if (!_modulesTaken.contains(module) && !_modulesFulfillRequirement.contains(module)) {
 						_modulesToBeTaken.add(module);
 					} else {
 						removeModuleTaken(module);
@@ -116,7 +125,7 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 				ArrayList<String> matchedModules = foundTaken ? moduleSets.get(oneTakenIndex) : moduleSets.get(whitelistIndex);
 				
 				for (String module: matchedModules) {
-					if (!_modulesTaken.contains(module)) {
+					if (!_modulesTaken.contains(module) && !_modulesFulfillRequirement.contains(module)) {
 						_modulesToBeTaken.add(module);
 					} else {
 						removeModuleTaken(module);
