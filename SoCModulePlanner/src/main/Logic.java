@@ -52,8 +52,8 @@ public class Logic {
 		
 		switch (major) {
 			case Constant.MAJOR_COMPUTER_SCIENCE:
-				analyseMajor = new AnalyseComputerScience(_moduleInfo, requirement, focusAreaSet, 
-						modulesTaken, modulesWhitelist, isMathTaken, isPhysicsTaken, isFromPoly);
+				analyseMajor = new AnalyseComputerScience(_moduleInfo, _modulePrereq, _modulePreclusion, 
+						requirement, focusAreaSet, modulesTaken, modulesWhitelist, isMathTaken, isPhysicsTaken, isFromPoly);
 				break;
 		}
 		

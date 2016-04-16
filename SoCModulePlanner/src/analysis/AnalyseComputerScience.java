@@ -1,6 +1,7 @@
 package analysis;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 import common.FilteredRequirement;
@@ -11,6 +12,8 @@ import constant.Constant;
 public class AnalyseComputerScience implements IAnalyseMajor {
 	
 	private TreeMap<String, ModuleInfo> _moduleInfo;
+	private HashMap<String, ArrayList<ArrayList<String>>> _modulePrereq;
+	private HashMap<String, ArrayList<String>> _modulePreclusion;
 	private ArrayList<ArrayList<ArrayList<String>>> _requirement;
 	private ArrayList<String> _modulesTaken;
 	private ArrayList<String> _modulesWhitelist;
@@ -20,15 +23,25 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 	private boolean _isFromPoly;
 	
 	private ArrayList<String> _modulesToBeTaken = new ArrayList<String>();
+	private ArrayList<String> _modulesFulfillRequirement = new ArrayList<String>();
 	private boolean _isPrimaries4000Taken = false;
 	private int _amountOf4000Taken = 0;
 	private int _amountOfPrimariesTaken = 0;
 	
-	public AnalyseComputerScience(TreeMap<String, ModuleInfo> moduleInfo,
+	private final String FUNDEMENTAL_MODULE_MATH = "MA1301";
+	private final String FUNDEMENTAL_MODULE_PHYSICS1 = "PC1221";
+	private final String FUNDEMENTAL_MODULE_PHYSICS2 = "PC1222";
+	
+	public AnalyseComputerScience(TreeMap<String, ModuleInfo> moduleInfo, 
+			HashMap<String, ArrayList<ArrayList<String>>> modulePrereq, 
+			HashMap<String, ArrayList<String>> modulePreclusion,
 			ArrayList<ArrayList<ArrayList<String>>> requirement, FocusArea focusArea, 
 			ArrayList<String> modulesTaken, ArrayList<String> modulesWhitelist, 
 			boolean isMathTaken, boolean isPhysicsTaken, boolean isFromPoly) {
+		
 		_moduleInfo = moduleInfo;
+		_modulePrereq = modulePrereq;
+		_modulePreclusion = modulePreclusion;
 		_requirement = requirement;
 		_modulesTaken = modulesTaken;
 		_modulesWhitelist = modulesWhitelist;
@@ -47,6 +60,8 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 		filterScienceGemSs();
 		filterPolyExemption();
 		filterMathPhysics();
+		filterWhitelistPreclusion();
+		addWhitelistPrereq();
 	}
 	
 	private void countAmountOf4000Taken() {
@@ -57,7 +72,6 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 				_amountOf4000Taken += 1;
 			}
 			
-			System.out.println(isPrimaries(module, _focusArea.getPrimaries()));
 			// check if the module is one of the focus area primaries
 			if (isPrimaries(module, _focusArea.getPrimaries())) {
 				_amountOfPrimariesTaken += 1;
@@ -78,7 +92,7 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 					if (!_modulesTaken.contains(module)) {
 						_modulesToBeTaken.add(module);
 					} else {
-						_modulesTaken.remove(module);
+						removeModuleTaken(module);
 					}
 				}
 			} else { 		// for EQUIVALENCE sets
@@ -105,8 +119,16 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 					if (!_modulesTaken.contains(module)) {
 						_modulesToBeTaken.add(module);
 					} else {
-						_modulesTaken.remove(module);
+						removeModuleTaken(module);
 					}
+				}
+				
+				for (int i = 0; i < moduleSets.size(); i++) {
+					if (i == oneTakenIndex) {
+						continue;
+					}
+					
+					_modulesFulfillRequirement.addAll(moduleSets.get(i));
 				}
 			}
 		}
@@ -132,26 +154,26 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 			if (type.equals("GEM")) {
 				if (_modulesToBeTaken.contains(Constant.REQUIREMENT_GEM2)) {
 					_modulesToBeTaken.remove(Constant.REQUIREMENT_GEM2);
-					_modulesTaken.remove(module);
+					removeModuleTaken(module);
 				} else if (_modulesToBeTaken.contains(Constant.REQUIREMENT_GEM1)) {
 					_modulesToBeTaken.remove(Constant.REQUIREMENT_GEM1);
-					_modulesTaken.remove(module);
+					removeModuleTaken(module);
 				}
 			} else if (type.equals("Science")) {
 				if (_modulesToBeTaken.contains(Constant.REQUIREMENT_SCIENCE3)) {
 					_modulesToBeTaken.remove(Constant.REQUIREMENT_SCIENCE3);
-					_modulesTaken.remove(module);
+					removeModuleTaken(module);
 				} else if (_modulesToBeTaken.contains(Constant.REQUIREMENT_SCIENCE2)) {
 					_modulesToBeTaken.remove(Constant.REQUIREMENT_SCIENCE2);
-					_modulesTaken.remove(module);
+					removeModuleTaken(module);
 				} else if (_modulesToBeTaken.contains(Constant.REQUIREMENT_SCIENCE1)) {
 					_modulesToBeTaken.remove(Constant.REQUIREMENT_SCIENCE1);
-					_modulesTaken.remove(module);
+					removeModuleTaken(module);
 				} 
 			} else if (type.equals("SS")) {
 				if (_modulesToBeTaken.contains(Constant.REQUIREMENT_SS)) {
 					_modulesToBeTaken.remove(Constant.REQUIREMENT_SS);
-					_modulesTaken.remove(module);
+					removeModuleTaken(module);
 				}
 			}
 		}
@@ -167,22 +189,120 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 		}
 	}
 	
-	private void filterMathPhysics() {
-		String mathModule = "MA1301";
-		String physicsModule1 = "PC1221";
-		String physicsModule2 = "PC1222";
-		
-		if (_isMathTaken && _modulesToBeTaken.contains(mathModule)) {
-			_modulesToBeTaken.remove(mathModule);
+	private void filterMathPhysics() {		
+		if (_isMathTaken && _modulesToBeTaken.contains(FUNDEMENTAL_MODULE_MATH)) {
+			_modulesToBeTaken.remove(FUNDEMENTAL_MODULE_MATH);
+			_modulesFulfillRequirement.add(FUNDEMENTAL_MODULE_MATH);
 		}
 		
-		if (_isPhysicsTaken && _modulesToBeTaken.contains(physicsModule1)) {
-			_modulesToBeTaken.remove(physicsModule1);
+		if (_isPhysicsTaken && _modulesToBeTaken.contains(FUNDEMENTAL_MODULE_PHYSICS1)) {
+			_modulesToBeTaken.remove(FUNDEMENTAL_MODULE_PHYSICS1);
+			_modulesFulfillRequirement.add(FUNDEMENTAL_MODULE_PHYSICS1);
 		}
 		
-		if (_isPhysicsTaken && _modulesToBeTaken.contains(physicsModule2)) {
-			_modulesToBeTaken.remove(physicsModule2);
+		if (_isPhysicsTaken && _modulesToBeTaken.contains(FUNDEMENTAL_MODULE_PHYSICS2)) {
+			_modulesToBeTaken.remove(FUNDEMENTAL_MODULE_PHYSICS2);
+			_modulesFulfillRequirement.add(FUNDEMENTAL_MODULE_PHYSICS2);
 		}
+	}
+	
+	private void filterWhitelistPreclusion() {
+		ArrayList<String> removeList = new ArrayList<String>();
+		for (String module: _modulesWhitelist) {
+			
+			// remove MA1301 when A-level math is taken
+			if (_isMathTaken && module.equals(FUNDEMENTAL_MODULE_MATH)) {
+				removeList.add(module);
+				continue;
+			}
+			
+			// remove PC1221 or PC1222 when A-level physics is taken
+			if (_isPhysicsTaken && (module.equals(FUNDEMENTAL_MODULE_PHYSICS1) || module.equals(FUNDEMENTAL_MODULE_PHYSICS2))) {
+				removeList.add(module);
+				continue;
+			}
+			
+			if (_modulesToBeTaken.contains(module)) {
+				removeList.add(module);
+				continue;
+			}
+			
+			ArrayList<String> preclusions = _modulePreclusion.containsKey(module) ? 
+					_modulePreclusion.get(module) : new ArrayList<String>();
+			
+			for (String preclusion: preclusions) {
+				if (_modulesToBeTaken.contains(preclusion) || 
+						_modulesTaken.contains(preclusion) || 
+						_modulesFulfillRequirement.contains(preclusion)) {
+					removeList.add(module);
+				}
+			}
+		}
+		
+		_modulesWhitelist.removeAll(removeList);
+	}
+	
+	private void addWhitelistPrereq() {
+		for (String module: _modulesWhitelist) {
+			ArrayList<String> prereqList = getPrereq(module);
+			
+			for (String prereq: prereqList) {
+				_modulesToBeTaken.add(prereq);
+			}
+		}
+	}
+	
+	private ArrayList<String> getPrereq(String module) {		
+		ArrayList<String> prereqList = new ArrayList<String>();
+		if (!_modulePrereq.containsKey(module) &&
+				!_modulesTaken.contains(module) && 
+				!_modulesFulfillRequirement.contains(module) &&
+				!_modulesToBeTaken.contains(module)) {
+			
+			prereqList.add(module);
+			return prereqList;
+		}
+		
+		if (!_modulesTaken.contains(module) && 
+				!_modulesFulfillRequirement.contains(module) &&
+				!_modulesToBeTaken.contains(module)) {
+			prereqList.add(module);
+		}
+		
+		ArrayList<ArrayList<String>> prereqSets = _modulePrereq.get(module);
+		
+		int preferredIndex = 0;
+		
+		outerloop:
+		for (int i = 0; i < prereqSets.size(); i++) {
+			ArrayList<String> prereqSet = prereqSets.get(i);
+			
+			for (String prereq: prereqSet) {
+				if (_modulesTaken.contains(prereq) || 
+						_modulesFulfillRequirement.contains(prereq) ||
+						_modulesToBeTaken.contains(prereq)) {
+					preferredIndex = i;
+					break outerloop;
+				}
+			}
+		}
+		
+		ArrayList<String> preferredPrereqSet = prereqSets.get(preferredIndex);
+		
+		for (String prereq: preferredPrereqSet) {
+			if (!_modulesTaken.contains(prereq) && 
+					!_modulesFulfillRequirement.contains(prereq) &&
+					!_modulesToBeTaken.contains(prereq)) {
+				prereqList.addAll(getPrereq(prereq));
+			}
+		}
+		
+		return prereqList;
+	}
+	
+	private void removeModuleTaken(String module) {
+		_modulesTaken.remove(module);
+		_modulesFulfillRequirement.add(module);
 	}
 	
 	private boolean isPrimaries(String module, ArrayList<String> primaries) {
@@ -190,8 +310,8 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 	}
 
 	public FilteredRequirement getModulesToBeTaken() {
-		
-		return new FilteredRequirement(_modulesToBeTaken, _isPrimaries4000Taken, _amountOf4000Taken);
+		int amountOf4000ToBeTaken = (_amountOf4000Taken > 3) ? 0 : (3 - _amountOf4000Taken);
+		return new FilteredRequirement(_modulesToBeTaken, _isPrimaries4000Taken, amountOf4000ToBeTaken);
 	}
 
 }

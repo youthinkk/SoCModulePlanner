@@ -308,7 +308,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void executePlanner() {
-		clearActionListener();
+		//clearActionListener();
 		
 		_logic.getPlanner(_major, _focusArea, _modulesTaken, _modulesWhitelist, 
 				_isMathTaken, _isPhysicsTaken, _isFromPoly, _planSemester);
