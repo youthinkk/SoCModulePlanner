@@ -1,6 +1,6 @@
-package main;
+package analysis;
 
-import object.FilteredRequirement;
+import common.FilteredRequirement;
 
 public interface IAnalyseMajor {
 	public FilteredRequirement getModulesToBeTaken();

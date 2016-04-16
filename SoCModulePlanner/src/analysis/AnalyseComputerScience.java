@@ -1,12 +1,12 @@
-package main;
+package analysis;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import common.FilteredRequirement;
+import common.FocusArea;
+import common.ModuleInfo;
 import constant.Constant;
-import object.FilteredRequirement;
-import object.FocusArea;
-import object.ModuleInfo;
 
 public class AnalyseComputerScience implements IAnalyseMajor {
 	

@@ -20,8 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import object.KeyValue;
-import object.ModuleInfo;
+import common.KeyValue;
+import common.ModuleInfo;
 
 import javax.swing.JScrollPane;
 

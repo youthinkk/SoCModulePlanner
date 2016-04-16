@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+import analysis.AnalyseComputerScience;
+import analysis.IAnalyseMajor;
+import common.FocusArea;
+import common.ModuleInfo;
 import constant.Constant;
-import object.FocusArea;
-import object.ModuleInfo;
 import storage.Storage;
 
 public class Logic {

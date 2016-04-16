@@ -1,4 +1,4 @@
-package object;
+package common;
 
 public class KeyValue {
 	private String _key;

@@ -7,8 +7,8 @@ import java.util.TreeMap;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import object.FocusArea;
-import object.ModuleInfo;
+import common.FocusArea;
+import common.ModuleInfo;
 
 public class Storage extends StorageFile {
 	private static ObjectMapper _mapper = new ObjectMapper();

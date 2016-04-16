@@ -1,4 +1,4 @@
-package object;
+package common;
 
 public class ModuleInfo {
 	private String _code;
