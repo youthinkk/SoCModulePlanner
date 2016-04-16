@@ -1,5 +1,6 @@
 package storage;
 
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -104,5 +105,15 @@ public class Storage extends StorageFile {
 			return focusAreaList;
 		}
 		return focusAreaList;
+	}
+	
+	public static String getPlannerCondition() {
+		try {
+			return new String(Files.readAllBytes(PLANNER_CONDITION_FILE.toPath()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new String();
 	}
 }
