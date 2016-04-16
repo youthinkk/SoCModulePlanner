@@ -8,8 +8,8 @@ public class Constant {
 	public final static String ASK_MODULES_TAKEN = ASK_DEFAULT + "the modules you have taken or been exempted:";
 	public final static String ASK_MODULES_WHITELIST = ASK_DEFAULT + "the modules you want to take: ";
 	public final static String ASK_PLANNING_SEMESTER = ASK_DEFAULT + "the semester you wish to start planning:";
-	public final static String ASK_H2_MATH_TAKEN = "Have you taken A level or H2 Mathematics?";
-	public final static String ASK_H2_PHYSICS_TAKEN = "Have you taken A level or H2 Physics?";
+	public final static String ASK_H2_MATH_TAKEN = "Have you taken A-level H2 Mathematics or equivalent?";
+	public final static String ASK_H2_PHYSICS_TAKEN = "Have you taken A-level H2 Physics or equivalent?";
 	public final static String ASK_FROM_POLY = "Were you from polytechnic?";
 	
 	public final static String ERROR_MATRICULATION_YEAR = "Matriculation year is not selected.";
