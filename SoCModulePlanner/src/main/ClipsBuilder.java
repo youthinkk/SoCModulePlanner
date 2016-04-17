@@ -12,6 +12,9 @@ public class ClipsBuilder {
 	public void setCondition(String condition) {
 		_clips.clear();
 		_clips.loadFromString(condition);
+		
+		System.out.println("load condition: ");
+		System.out.println(condition);
 	}
 	
 	public void reset() {
