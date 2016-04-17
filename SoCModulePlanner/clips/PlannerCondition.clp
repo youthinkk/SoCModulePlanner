@@ -41,7 +41,7 @@
     (slot accumulative-credits
         (type INTEGER)
         (default 0))
-	(slot preferred-module-amount
+	(slot preferred-module-amount  ; ; Preferred amount of modules to take per semester
 		(type INTEGER)
 		(default 5)))
 
@@ -197,8 +197,8 @@
 ; ; Plan module with offering at semester 1 and 2, without corequisite
 (defrule planned-sem1-and-sem2-no-coreq
     (declare (salience 5))
-    ?module <- (module (code ?code) (minimum-semester ?minimum-semester) (status available) (offer $?offer-semester) (coreq))
-    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (must-plan-number-module ?must-modules) (accumulative-credits ?credits))
+    ?module <- (module (code ?code) (credits ?credits) (minimum-semester ?minimum-semester) (status available) (offer $?offer-semester) (coreq))
+    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (must-plan-number-module ?must-modules) (accumulative-credits ?accumulative-credits))
     (test (member$ 1 ?offer-semester))
     (test (member$ 2 ?offer-semester))
     (or (test (eq (mod ?current-semester 4) 1)) (test (eq (mod ?current-semester 4) 2)))
@@ -206,8 +206,10 @@
     (test (< ?minimum-semester ?current-semester))
     =>
     (bind ?number-of-module (+ ?number-of-module 1))
+    (bind ?must-modules (- ?must-modules 1))
+    (bind ?accumulative-credits (+ ?accumulative-credits ?credits))
     (modify ?module (status planned) (semester ?current-semester))
-    (modify ?management (number-of-module ?number-of-module))
+    (modify ?management (number-of-module ?number-of-module) (must-plan-number-module ?must-modules) (accumulative-credits ?accumulative-credits))
     (assert (prereq (code ?code) (minimum-semester ?current-semester)))
     (printout t ?code " is planned" crlf)
     (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
