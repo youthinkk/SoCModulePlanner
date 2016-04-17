@@ -87,6 +87,26 @@
 ;;;;;;;;;;;;;;;;;;;;;
 
 ; ; Mark the module as planned
+(defrule planned-sem1-with-coreq
+    (declare (salience 8))
+    ?module1 <- (module (code ?code) (minimum-semester ?minimum-semester1) (status available) (offer 1) (coreq ?coreq))
+    ?module2 <- (module (code ?coreq) (minimum-semester ?minimum-semester2) (status available) (offer 1))
+    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module))
+    (test (eq (mod ?current-semester 4) 1))
+    (test (< ?number-of-module 4))
+    (test (< ?minimum-semester1 ?current-semester))
+    (test (< ?minimum-semester2 ?current-semester))
+    =>
+    (bind ?number-of-module (+ ?number-of-module 2))
+    (modify ?module1 (status planned) (semester ?current-semester))
+    (modify ?module2 (status planned) (semester ?current-semester))
+    (modify ?management (number-of-module ?number-of-module))
+    (assert (prereq (code ?code) (minimum-semester ?current-semester)))
+    (assert (prereq (code ?coreq) (minimum-semester ?current-semester)))
+    (printout t ?code " and " ?coreq " are planned" crlf)
+    (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
+
+; ; Mark the module as planned
 (defrule planned-sem1-no-coreq
     (declare (salience 7))
 	?module <- (module (code ?code) (minimum-semester ?minimum-semester) (status available) (offer 1) (coreq))
@@ -99,7 +119,7 @@
 	(modify ?module (status planned) (semester ?current-semester))
 	(modify ?management (number-of-module ?number-of-module))
     (assert (prereq (code ?code) (minimum-semester ?current-semester)))
-    (printout t ?code " is planned now" crlf)
+    (printout t ?code " is planned" crlf)
     (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
 
 ; ; Mark the module as planned
@@ -115,7 +135,7 @@
     (modify ?module (status planned) (semester ?current-semester))
     (modify ?management (number-of-module ?number-of-module))
     (assert (prereq (code ?code) (minimum-semester ?current-semester)))
-    (printout t ?code " is planned now" crlf)
+    (printout t ?code " is planned" crlf)
     (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
 
 ; ; Mark the module as planned
@@ -125,6 +145,7 @@
     ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module))
     (test (member$ 1 ?offer-semester))
     (test (member$ 2 ?offer-semester))
+    (or (test (eq (mod ?current-semester 4) 1)) (test (eq (mod ?current-semester 4) 2)))
     (test (< ?number-of-module 5))
     (test (< ?minimum-semester ?current-semester))
     =>
@@ -132,7 +153,7 @@
     (modify ?module (status planned) (semester ?current-semester))
     (modify ?management (number-of-module ?number-of-module))
     (assert (prereq (code ?code) (minimum-semester ?current-semester)))
-    (printout t ?code " is planned now" crlf)
+    (printout t ?code " is planned" crlf)
     (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
 
 
