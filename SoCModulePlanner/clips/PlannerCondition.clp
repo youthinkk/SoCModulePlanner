@@ -66,6 +66,7 @@
 
 ; ; Shift to next semester
 (defrule shift-semester
+    (declare (salience 10))
     ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (preferred-module-amount ?prefer))
     (test (eq ?number-of-module ?prefer))
     =>
@@ -73,17 +74,17 @@
     (modify ?management (current-semester ?next-semester))
     (printout t "Shift to Semester " ?next-semester crlf))
 
-;;;;;;;;;;;;;;;;;;;;;
-;; MODULE PLANNING ;;
-;;;;;;;;;;;;;;;;;;;;;
-
 ; ; Mark the module available        
 (defrule mark-available
     (declare (salience 9))
-	?module <- (module (code ?code) (status unavailable) (prereq))
-	=>
-	(modify ?module (status available))
-	(printout t ?code " is available now" crlf))
+    ?module <- (module (code ?code) (status unavailable) (prereq))
+    =>
+    (modify ?module (status available))
+    (printout t ?code " is available now" crlf))
+
+;;;;;;;;;;;;;;;;;;;;;
+;; MODULE PLANNING ;;
+;;;;;;;;;;;;;;;;;;;;;
 
 ; ; Mark the module as planned
 (defrule planned-sem1-no-coreq
@@ -117,6 +118,21 @@
     (printout t ?code " is planned now" crlf)
     (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
 
-
+; ; Mark the module as planned
+(defrule planned-sem1-and-sem2-no-coreq
+    (declare (salience 6))
+    ?module <- (module (code ?code) (minimum-semester ?minimum-semester) (status available) (offer $?offer-semester) (coreq))
+    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module))
+    (test (member$ 1 ?offer-semester))
+    (test (member$ 2 ?offer-semester))
+    (test (< ?number-of-module 5))
+    (test (< ?minimum-semester ?current-semester))
+    =>
+    (bind ?number-of-module (+ ?number-of-module 1))
+    (modify ?module (status planned) (semester ?current-semester))
+    (modify ?management (number-of-module ?number-of-module))
+    (assert (prereq (code ?code) (minimum-semester ?current-semester)))
+    (printout t ?code " is planned now" crlf)
+    (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
 
 
