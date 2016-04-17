@@ -13,18 +13,21 @@
     (slot status
     	(type SYMBOL)
     	(default unavailable))
-    (slot semester
+    (slot semester              ; ; semester that plan to take
     	(type INTEGER)
     	(default 0))
-    (multislot coreq
+    (slot minimum-semester      ; ; minimum semester to take
+        (type INTEGER)
+        (default 0))
+    (multislot coreq  
         (type SYMBOL))
     (multislot prereq
     	(type SYMBOL))
     (multislot offer
         (type INTEGER)))
         
-(deftemplate semester
-	(slot current 
+(deftemplate management
+	(slot current-semester
 		(type INTEGER))
 	(slot number-of-module
 		(type INTEGER)
@@ -36,6 +39,8 @@
 (deftemplate prereq
     (slot code
         (type SYMBOL))
+    (slot minimum-semester
+        (type INTEGER))
     (slot fulfill
         (type SYMBOL)
         (default TRUE)))
@@ -43,8 +48,30 @@
 ; ; MODULES
 ; ; (defmodule PLAN (import MAIN ?ALL))
 
+; ; Remove the prerequisite when it is fulfilled
+(defrule remove-prereq
+    (declare (salience 10))
+    ?prereq <- (prereq (code ?code) (minimum-semester ?minimum-semester))
+    ?module <- (module (code ?code-mod) (prereq $?prerequisites))
+    (test (member$ ?code ?prerequisites))
+    =>
+    (bind ?index (member$ ?code ?prerequisites))
+    (bind $?result (delete$ (create$ ?prerequisites) 1 1))
+    (modify ?module (prereq ?result) (minimum-semester ?minimum-semester))
+    (printout t "Remove prereq: " ?code " from " ?code-mod crlf))
+
+; ; Shift to next semester
+(defrule shift-semester
+    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (preferred-module-amount ?prefer))
+    (test (eq ?number-of-module ?prefer))
+    =>
+    (bind ?next-semester (+ ?current-semester 1))
+    (modify ?management (current-semester ?next-semester))
+    (printout t "Shift to Semester" ?next-semester crlf))
+
 ; ; Mark the module available        
 (defrule mark-available
+    (declare (salience 9))
 	?module <- (module (code ?code) (status unavailable) (prereq))
 	=>
 	(modify ?module (status available))
@@ -52,17 +79,19 @@
 
 ; ; Mark the module as planned
 (defrule planned-sem1-no-coreq
-	?module <- (module (code ?code) (status available) (offer 1) (coreq))
-	?semester <- (semester (current ?current) (number-of-module ?number-of-module))
-    (test(eq (mod ?current 4) 1))
-    (test(< ?number-of-module 5))
+    (declare (salience 8))
+	?module <- (module (code ?code) (minimum-semester ?minimum-semester) (status available) (offer 1) (coreq))
+	?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module))
+    (test (eq (mod ?current-semester 4) 1))
+    (test (< ?number-of-module 5))
+    (test (< ?minimum-semester ?current-semester))
 	=>
     (bind ?number-of-module (+ ?number-of-module 1))
-	(modify ?module (status planned) (semester 1))
-	(modify ?semester (number-of-module ?number-of-module))
-    (assert (prereq (code ?code)))
+	(modify ?module (status planned) (semester ?current-semester))
+	(modify ?management (number-of-module ?number-of-module))
+    (assert (prereq (code ?code) (minimum-semester ?current-semester)))
     (printout t ?code " is planned now" crlf)
-    (printout t "Semester" ?current " has planned for " ?number-of-module " module(s)" crlf))
+    (printout t "Semester" ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
 
 
 
