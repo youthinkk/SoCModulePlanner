@@ -1,4 +1,7 @@
-; ; Templates
+;;;;;;;;;;;;;;;
+;; Templates ;;
+;;;;;;;;;;;;;;;
+
 (deftemplate module    "Module Info"
     (slot code
         (type SYMBOL))
@@ -45,8 +48,9 @@
         (type SYMBOL)
         (default TRUE)))
 
-; ; MODULES
-; ; (defmodule PLAN (import MAIN ?ALL))
+;;;;;;;;;;;;;;;;;;
+;; HELPER RULES ;;
+;;;;;;;;;;;;;;;;;;
 
 ; ; Remove the prerequisite when it is fulfilled
 (defrule remove-prereq
@@ -67,7 +71,11 @@
     =>
     (bind ?next-semester (+ ?current-semester 1))
     (modify ?management (current-semester ?next-semester))
-    (printout t "Shift to Semester" ?next-semester crlf))
+    (printout t "Shift to Semester " ?next-semester crlf))
+
+;;;;;;;;;;;;;;;;;;;;;
+;; MODULE PLANNING ;;
+;;;;;;;;;;;;;;;;;;;;;
 
 ; ; Mark the module available        
 (defrule mark-available
@@ -79,7 +87,7 @@
 
 ; ; Mark the module as planned
 (defrule planned-sem1-no-coreq
-    (declare (salience 8))
+    (declare (salience 7))
 	?module <- (module (code ?code) (minimum-semester ?minimum-semester) (status available) (offer 1) (coreq))
 	?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module))
     (test (eq (mod ?current-semester 4) 1))
@@ -91,7 +99,23 @@
 	(modify ?management (number-of-module ?number-of-module))
     (assert (prereq (code ?code) (minimum-semester ?current-semester)))
     (printout t ?code " is planned now" crlf)
-    (printout t "Semester" ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
+    (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
+
+; ; Mark the module as planned
+(defrule planned-sem2-no-coreq
+    (declare (salience 7))
+    ?module <- (module (code ?code) (minimum-semester ?minimum-semester) (status available) (offer 2) (coreq))
+    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module))
+    (test (eq (mod ?current-semester 4) 2))
+    (test (< ?number-of-module 5))
+    (test (< ?minimum-semester ?current-semester))
+    =>
+    (bind ?number-of-module (+ ?number-of-module 1))
+    (modify ?module (status planned) (semester ?current-semester))
+    (modify ?management (number-of-module ?number-of-module))
+    (assert (prereq (code ?code) (minimum-semester ?current-semester)))
+    (printout t ?code " is planned now" crlf)
+    (printout t "Semester " ?current-semester " has planned for " ?number-of-module " module(s)" crlf))
 
 
 
