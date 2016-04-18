@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;
-;; Templates ;;
+;; TEMPLATES ;;
 ;;;;;;;;;;;;;;;
 
 (deftemplate module    "Module Info"
@@ -96,7 +96,7 @@
     (printout t ?code " is available now" crlf))
 
 (defrule program-end
-    (declare (salience 15))
+    (declare (salience 20))
     ?management <- (management (must-plan-number-module ?must-modules) (accumulative-credits ?credits))
     (test (eq ?must-modules 0))
     (test (>= ?credits 160))
@@ -210,7 +210,7 @@
     (assert (prereq (code ?code) (minimum-semester ?current-semester)))
     (printout t ?code " is planned" crlf))
 
-; ; Allocate elective when there is nothing to take
+; ; Allocate elective when there is nothing to take with existing modules that are not planned
 (defrule plan-elective-with-available-module
     (declare (salience 1))
     (module (status available) (offer $?offer-semester))
@@ -223,8 +223,9 @@
     (assert (module (code ?name) (type UE) (status planned) (semester ?current-semester)))
     (modify ?management (number-of-module (+ ?number-of-module 1)) (accumulative-credits (+ ?accumulative-credits 4)))
     (refresh plan-elective-with-available-module)
-    (printout t "ELECTIVE is planned" crlf))
+    (printout t ?name " is planned" crlf))
 
+; ; Allocate elective when there is nothing to take
 (defrule plan-elective-with-no-must-module
     (declare (salience 1))
     ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (must-plan-number-module ?must-modules) (accumulative-credits ?accumulative-credits))
@@ -235,5 +236,19 @@
     (assert (module (code ?name) (type UE) (status planned) (semester ?current-semester)))
     (modify ?management (number-of-module (+ ?number-of-module 1)) (accumulative-credits (+ ?accumulative-credits 4)))
     (refresh plan-elective-with-no-must-module)
-    (printout t "ELECTIVE is planned" crlf))
+    (printout t ?name " is planned" crlf))
 
+(defrule plan-sip
+    (declare (salience 15))
+    ?module <- (module (code ?code) (credits ?credits) (minimum-semester ?minimum-semester) (status available))
+    (or (test (eq ?code CP3200)) (test (eq ?code CP3202)))
+    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (must-plan-number-module ?must-modules) (accumulative-credits ?accumulative-credits))
+    (test (eq (mod ?current-semester 4) 3))
+    (test (< ?number-of-module 5))
+    (test (< ?minimum-semester ?current-semester))
+    (test (> ?accumulative-credits 70))
+    =>
+    (modify ?module (status planned) (semester ?current-semester))
+    (modify ?management (number-of-module (+ ?number-of-module 1)) (must-plan-number-module (- ?must-modules 1)) (accumulative-credits (+ ?accumulative-credits ?credits)))
+    (assert (prereq (code ?code) (minimum-semester ?current-semester)))
+    (printout t ?code " is planned" crlf))
