@@ -218,7 +218,7 @@
     (and (test (not (eq 3 ?current-semester))) (test (not (eq 4 ?current-semester))))
     (test (not (member$ (mod ?current-semester 4) ?offer-semester)))
     =>
-    (bind ?name (sym-cat ELECTIVE ?*elective-count*))
+    (bind ?name (sym-cat UELECTIVE ?*elective-count*))
     (bind ?*elective-count* (+ ?*elective-count* 1))
     (assert (module (code ?name) (type UE) (status planned) (semester ?current-semester)))
     (modify ?management (number-of-module (+ ?number-of-module 1)) (accumulative-credits (+ ?accumulative-credits 4)))
@@ -231,7 +231,7 @@
     ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (must-plan-number-module ?must-modules) (accumulative-credits ?accumulative-credits))
     (and (test (eq ?must-modules 0)) (test (< ?accumulative-credits 160)))
     =>
-    (bind ?name (sym-cat ELECTIVE ?*elective-count*))
+    (bind ?name (sym-cat UELECTIVE ?*elective-count*))
     (bind ?*elective-count* (+ ?*elective-count* 1))
     (assert (module (code ?name) (type UE) (status planned) (semester ?current-semester)))
     (modify ?management (number-of-module (+ ?number-of-module 1)) (accumulative-credits (+ ?accumulative-credits 4)))

@@ -3,6 +3,8 @@ package analysis;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.TreeMap;
 
 import common.FilteredRequirement;
@@ -23,6 +25,7 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 	private boolean _isPhysicsTaken;
 	private boolean _isFromPoly;
 	
+	private HashMap<String, ArrayList<String>> _modulesToBeTakenPrereq = new HashMap<String, ArrayList<String>>();
 	private ArrayList<String> _modulesToBeTaken = new ArrayList<String>();
 	private HashSet<String> _modulesFulfillRequirement = new HashSet<String>();
 	private boolean _isPrimaries4000Taken = false;
@@ -64,6 +67,7 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 		filterMathPhysics();
 		filterWhitelistPreclusion();
 		addWhitelistPrereq();
+		analyseModulesToBeTakenPrereq();
 	}
 	
 	private void countAmountOf4000Taken() {
@@ -255,10 +259,69 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 		for (String module: _modulesWhitelist) {
 			ArrayList<String> prereqList = getPrereq(module);
 			
+			//System.out.print("WHITE LIST " + module + ": ");
 			for (String prereq: prereqList) {
 				_modulesToBeTaken.add(prereq);
+				//System.out.print(prereq + " ");
 			}
+			//System.out.println();
 		}
+	}
+	
+	private void analyseModulesToBeTakenPrereq() {
+		for(String module: _modulesToBeTaken) {
+			ArrayList<ArrayList<String>> prereqSets = _modulePrereq.get(module);
+			ArrayList<String> toBeTakenPrereq = new ArrayList<String>();
+
+			if (prereqSets != null) {
+				int preferredIndex = 0;
+				int bestMatch = 0;
+
+				for (int i = 0; i < prereqSets.size(); i++) {
+					ArrayList<String> prereqSet = prereqSets.get(i);
+					int currentMatch = 0;
+
+					for (String prereq: prereqSet) {
+						if (_modulesToBeTaken.contains(prereq)) {
+							//preferredIndex = i;
+							currentMatch += 1;
+						}
+					}
+					System.out.println("Current match: " + currentMatch);
+					System.out.println("Best match: " + bestMatch);
+					if (currentMatch > bestMatch) {
+						bestMatch = currentMatch;
+						preferredIndex = i;
+					}
+				}
+
+				ArrayList<String> preferredPrereqSet = prereqSets.get(preferredIndex);
+				
+				//System.out.println("MODULE: " + module);
+				for (String prereq: preferredPrereqSet) {
+					//System.out.println("PREREQ: " + prereq);
+					if (_modulesToBeTaken.contains(prereq)) {
+						toBeTakenPrereq.add(prereq);
+					}
+				}
+				//System.out.println();
+			}
+			
+			_modulesToBeTakenPrereq.put(module, toBeTakenPrereq);
+		}
+		
+		/*Set<Entry<String, ArrayList<String>>> entries = _modulesToBeTakenPrereq.entrySet();
+		
+		for(Entry<String, ArrayList<String>> entry: entries) {
+			String module = entry.getKey();
+			ArrayList<String> prereqSet = entry.getValue();
+			
+			System.out.print(module + ": ");
+			for (String prereq: prereqSet) {
+				System.out.print(prereq + " ");
+			}
+			System.out.println();
+		}*/
 	}
 	
 	private ArrayList<String> getPrereq(String module) {		
@@ -276,9 +339,11 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 				!_modulesFulfillRequirement.contains(module) &&
 				!_modulesToBeTaken.contains(module)) {
 			prereqList.add(module);
-		}
+		} 
 		
 		ArrayList<ArrayList<String>> prereqSets = _modulePrereq.get(module);
+		
+		if (prereqSets == null) return prereqList;
 		
 		int preferredIndex = 0;
 		
@@ -287,9 +352,9 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 			ArrayList<String> prereqSet = prereqSets.get(i);
 			
 			for (String prereq: prereqSet) {
-				if (_modulesTaken.contains(prereq) || 
-						_modulesFulfillRequirement.contains(prereq) ||
-						_modulesToBeTaken.contains(prereq)) {
+				if (_modulesToBeTaken.contains(prereq) ||
+						_modulesTaken.contains(prereq) || 
+						_modulesFulfillRequirement.contains(prereq)) {
 					preferredIndex = i;
 					break outerloop;
 				}
@@ -318,9 +383,8 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 		return primaries.contains(module);
 	}
 
-	public FilteredRequirement getModulesToBeTaken() {
+	public FilteredRequirement getResult() {
 		int amountOf4000ToBeTaken = (_amountOf4000Taken > 3) ? 0 : (3 - _amountOf4000Taken);
-		return new FilteredRequirement(_modulesToBeTaken, _isPrimaries4000Taken, amountOf4000ToBeTaken);
+		return new FilteredRequirement(_modulesToBeTaken, _modulesToBeTakenPrereq, _isPrimaries4000Taken, amountOf4000ToBeTaken);
 	}
-
 }

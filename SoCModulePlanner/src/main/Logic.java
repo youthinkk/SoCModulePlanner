@@ -1,11 +1,14 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeMap;
 
 import analysis.AnalyseComputerScience;
 import analysis.IAnalyseMajor;
+import common.FilteredRequirement;
 import common.FocusArea;
 import common.ModuleInfo;
 import constant.Constant;
@@ -34,6 +37,7 @@ public class Logic {
 		_clips = new ClipsBuilder();
 		
 		_clips.setCondition(_plannerCondition);
+		_clips.watch();
 	}
 	
 	public TreeMap<String, ModuleInfo> getModuleList() {
@@ -58,11 +62,41 @@ public class Logic {
 		}
 		
 		if (analyseMajor != null) {
-			ArrayList<String> modulesToBeTaken = analyseMajor.getModulesToBeTaken().getModulesToBeTaken();
+			FilteredRequirement result = analyseMajor.getResult();
+			ArrayList<String> modulesToBeTaken = result.getModulesToBeTaken();
+			HashMap<String, ArrayList<String>> modulesToBeTakenPrereq = result.getPrereq();
+			
+			Collections.sort(modulesToBeTaken, new Comparator<String>() {
 
+				@Override
+				public int compare(String o1, String o2) {
+					ModuleInfo info1 = _moduleInfo.get(o1);
+					ModuleInfo info2 = _moduleInfo.get(o2);
+					Integer level1 = info1 != null ? info1.getLevel() : 1000;
+					Integer level2 = info2 != null ? info2.getLevel() : 1000;
+					return level1.compareTo(level2);
+				}
+				
+			});
+			
+			Collections.reverse(modulesToBeTaken);
+			
 			for (String module: modulesToBeTaken) {
-				System.out.println(module);
+				ModuleInfo info = _moduleInfo.get(module);
+				
+				if (info != null) {
+					_clips.assertModule(module, info.getLevel(), info.getCredits(), 
+							"", modulesToBeTakenPrereq.get(module), _moduleHistory.get(module));
+				} else {
+					_clips.assertModule(module, 1000, 4, 
+							"", new ArrayList<String>(), new boolean[] {true, true, false, false});
+				}
 			}
+			
+			_clips.assertManagement(planSemester, modulesToBeTaken.size(), credits);
+			//_clips.reset();
+			_clips.run();
+			_clips.showFacts();
 		}
 		
 		return planner;

@@ -3,5 +3,5 @@ package analysis;
 import common.FilteredRequirement;
 
 public interface IAnalyseMajor {
-	public FilteredRequirement getModulesToBeTaken();
+	public FilteredRequirement getResult();
 }
