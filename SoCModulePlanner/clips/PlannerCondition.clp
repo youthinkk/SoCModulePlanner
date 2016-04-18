@@ -54,6 +54,12 @@
         (type SYMBOL)
         (default TRUE)))
 
+;;;;;;;;;;;;;
+;; GLOBALS ;;
+;;;;;;;;;;;;;
+
+(defglobal ?*elective-count* = 1)
+
 ;;;;;;;;;;;;;;;;;;
 ;; HELPER RULES ;;
 ;;;;;;;;;;;;;;;;;;
@@ -74,10 +80,11 @@
 (defrule shift-semester
     (declare (salience 10))
     ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (preferred-module-amount ?prefer))
-    (test (eq ?number-of-module ?prefer))
+    (or (test (eq ?number-of-module ?prefer)) (test (eq (mod ?current-semester 4) 3)) (test (eq (mod ?current-semester 4) 0)))
     =>
     (bind ?next-semester (+ ?current-semester 1))
     (modify ?management (current-semester ?next-semester) (number-of-module 0))
+    (refresh shift-semester)
     (printout t "Shift to Semester " ?next-semester crlf))
 
 ; ; Mark the module available        
@@ -89,7 +96,7 @@
     (printout t ?code " is available now" crlf))
 
 (defrule program-end
-    (declare (salience 5))
+    (declare (salience 15))
     ?management <- (management (must-plan-number-module ?must-modules) (accumulative-credits ?credits))
     (test (eq ?must-modules 0))
     (test (>= ?credits 160))
@@ -202,3 +209,31 @@
     (modify ?management (number-of-module (+ ?number-of-module 1)) (must-plan-number-module (- ?must-modules 1)) (accumulative-credits (+ ?accumulative-credits ?credits)))
     (assert (prereq (code ?code) (minimum-semester ?current-semester)))
     (printout t ?code " is planned" crlf))
+
+; ; Allocate elective when there is nothing to take
+(defrule plan-elective-with-available-module
+    (declare (salience 1))
+    (module (status available) (offer $?offer-semester))
+    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (must-plan-number-module ?must-modules) (accumulative-credits ?accumulative-credits))
+    (and (test (not (eq 3 ?current-semester))) (test (not (eq 4 ?current-semester))))
+    (test (not (member$ (mod ?current-semester 4) ?offer-semester)))
+    =>
+    (bind ?name (sym-cat ELECTIVE ?*elective-count*))
+    (bind ?*elective-count* (+ ?*elective-count* 1))
+    (assert (module (code ?name) (type UE) (status planned) (semester ?current-semester)))
+    (modify ?management (number-of-module (+ ?number-of-module 1)) (accumulative-credits (+ ?accumulative-credits 4)))
+    (refresh plan-elective-with-available-module)
+    (printout t "ELECTIVE is planned" crlf))
+
+(defrule plan-elective-with-no-must-module
+    (declare (salience 1))
+    ?management <- (management (current-semester ?current-semester) (number-of-module ?number-of-module) (must-plan-number-module ?must-modules) (accumulative-credits ?accumulative-credits))
+    (and (test (eq ?must-modules 0)) (test (< ?accumulative-credits 160)))
+    =>
+    (bind ?name (sym-cat ELECTIVE ?*elective-count*))
+    (bind ?*elective-count* (+ ?*elective-count* 1))
+    (assert (module (code ?name) (type UE) (status planned) (semester ?current-semester)))
+    (modify ?management (number-of-module (+ ?number-of-module 1)) (accumulative-credits (+ ?accumulative-credits 4)))
+    (refresh plan-elective-with-no-must-module)
+    (printout t "ELECTIVE is planned" crlf))
+
