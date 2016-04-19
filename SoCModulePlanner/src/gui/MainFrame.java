@@ -1,16 +1,20 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import common.KeyValue;
 import constant.Constant;
 import main.Logic;
 
@@ -20,6 +24,7 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 	private QuestionPanel _questionPanel = new QuestionPanel();
 	private ModulePanel _modulePanel = new ModulePanel();
+	private PlannerPanel _plannerPanel = new PlannerPanel();
 	private Logic _logic;
 	
 	private String _matriculationYear;
@@ -173,9 +178,12 @@ public class MainFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
 		
 		getContentPane().add(_questionPanel);
-		askMatriculationYear();
+		//askMatriculationYear();
+		askFocusArea();
+		_major = Constant.MAJOR_COMPUTER_SCIENCE;
 	}
 	
 	private void askMatriculationYear() {
@@ -220,11 +228,12 @@ public class MainFrame extends JFrame {
 		_questionPanel.label.setText(Constant.ASK_FOCUS_AREA);
 		
 		_questionPanel.comboBox.removeAllItems();
-		if (_matriculationYear.equals(Constant.ACADEMIC_YEAR_2015_2016)) {
+		/*if (_matriculationYear.equals(Constant.ACADEMIC_YEAR_2015_2016)) {
 			addFocusAreaAfterAY1516(_questionPanel.comboBox);
 		} else {
 			addFocusAreaBeforeAY1516(_questionPanel.comboBox);
-		}
+		}*/
+		addFocusAreaAfterAY1516(_questionPanel.comboBox);
 		_questionPanel.comboBox.setSelectedIndex(DEFAULT_SELECTED_INDEX);
 		
 		_questionPanel.nextButton.addActionListener(_focusAreaListener);
@@ -295,6 +304,7 @@ public class MainFrame extends JFrame {
 		getContentPane().remove(_questionPanel);
 		getContentPane().add(_modulePanel);
 		setSize(_modulePanel.getPreferredSize());
+		setLocationRelativeTo(null);
 	}
 	
 	private void askModulesWhitelist() {
@@ -304,6 +314,7 @@ public class MainFrame extends JFrame {
 		_modulePanel.availableLabel.setText(Constant.LABEL_AVAILABLE_MODULES);
 		_modulePanel.selectedLabel.setText(Constant.LABEL_LIKED_MODULES);
 		_modulePanel.clearSelectedList();
+		_modulePanel.nextButton.setText("Get Planner");
 		_modulePanel.nextButton.addActionListener(_modulesWhitelistListener);
 	}
 	
@@ -312,6 +323,19 @@ public class MainFrame extends JFrame {
 		
 		_logic.getPlanner(_major, _focusArea, _modulesTaken, _modulesWhitelist, 
 				_isMathTaken, _isPhysicsTaken, _isFromPoly, _planSemester);
+		
+		TreeMap<Integer, ArrayList<KeyValue>> planner = getSamplePlanner();
+		_plannerPanel.setContent(planner);
+		
+		JScrollPane scrollPane = new JScrollPane(_plannerPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(50, 30, 300, 50);
+        
+		getContentPane().remove(_modulePanel);
+		getContentPane().add(scrollPane);
+		setSize(new Dimension(600, 600));
+		setLocationRelativeTo(null);
 	}
 	
 	private void addFocusAreaAfterAY1516(JComboBox<String> combo) {
@@ -362,5 +386,48 @@ public class MainFrame extends JFrame {
 	public void setLogic(Logic logic) {
 		_logic = logic;
 		_modulePanel.initModuleList(_logic.getModuleList());
+	}
+	
+	private TreeMap<Integer, ArrayList<KeyValue>> getSamplePlanner() {
+		TreeMap<Integer, ArrayList<KeyValue>> planner =
+				new TreeMap<Integer, ArrayList<KeyValue>>();
+		
+		ArrayList<KeyValue> modules = new ArrayList<KeyValue>();
+		modules.add(new KeyValue("CS1010", "Programming Methodology"));
+		modules.add(new KeyValue("CS1231", "Discrete Structures"));
+		modules.add(new KeyValue("GEM1", "GEM1"));
+		modules.add(new KeyValue("MA1101R", "Linear Algebra I"));
+		modules.add(new KeyValue("PC1141", "Introduction to Classical Mechanics"));
+		planner.put(1, modules);
+		
+		modules = new ArrayList<KeyValue>();
+		modules.add(new KeyValue("CS2020", "Data Structure and Algorithms Accelerated"));
+		modules.add(new KeyValue("CS2107", "Introduction to Information Security"));
+		modules.add(new KeyValue("GEK1901", "Critical Thinking in the Information Age"));
+		modules.add(new KeyValue("LAC3204", "Chinese for Business & Social Sciences"));
+		modules.add(new KeyValue("MA1521", "Calculus for Computing"));
+		planner.put(2, modules);
+		
+		modules = new ArrayList<KeyValue>();
+		modules.add(new KeyValue("CS2101", "Effective Communication for Computing Professionals"));
+		modules.add(new KeyValue("CS2102", "Database Systems"));
+		modules.add(new KeyValue("CS2103T", "Software Engineering"));
+		modules.add(new KeyValue("CS2105", "Introduction to Computer Networks"));
+		modules.add(new KeyValue("ST2334", "Probability and Statistics"));
+		planner.put(5, modules);
+		
+		modules = new ArrayList<KeyValue>();
+		modules.add(new KeyValue("CS2106", "Introduction to Operating Systems"));
+		modules.add(new KeyValue("CS3243", "Introduction to Artificial Intelligence"));
+		modules.add(new KeyValue("CS3281", "Thematic Systems Project I"));
+		modules.add(new KeyValue("CS3282", "Thematic Systems Project II"));
+		modules.add(new KeyValue("LSM1302", "Genes and Society"));
+		planner.put(6, modules);
+		
+		modules = new ArrayList<KeyValue>();
+		modules.add(new KeyValue("CP3200", "Internship"));
+		planner.put(7, modules);
+		
+		return planner;
 	}
 }
