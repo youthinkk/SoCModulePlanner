@@ -1,11 +1,19 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
+import java.util.TreeMap;
 
+import common.KeyValue;
+import common.ModuleInfo;
 import net.sf.clipsrules.jni.Environment;
+import net.sf.clipsrules.jni.FactAddressValue;
+import net.sf.clipsrules.jni.MultifieldValue;
 
 public class ClipsBuilder {
 	private Environment _clips;
+	private final String SINGAPORE_STUDIES = "SS";
+	private final String UNRESTRICTED_ELECTIVES = "UELECTIVE";
 	
 	public ClipsBuilder() {
 		_clips = new Environment();
@@ -72,6 +80,58 @@ public class ClipsBuilder {
 	
 	public void showFacts() {
 		execute("(facts)");
+	}
+	
+	public TreeMap<Integer, ArrayList<KeyValue>> getPlannedModules(TreeMap<String, ModuleInfo> moduleInfo) {
+		TreeMap<Integer, ArrayList<KeyValue>> planner = new TreeMap<Integer, ArrayList<KeyValue>>();
+		
+		MultifieldValue facts = (MultifieldValue) _clips.eval("(find-all-facts ((?f module)) TRUE)");
+		
+		@SuppressWarnings("unchecked")
+		ListIterator<FactAddressValue> iterator = facts.multifieldValue().listIterator();
+		//int size = facts.size();
+		String code;
+		int semester;
+		
+		while (iterator.hasNext()) {
+			FactAddressValue address = iterator.next();
+			
+			try {
+				if (address.getFactSlot("status").toString().equals("planned")) {
+					KeyValue keyValue;
+					
+					code = address.getFactSlot("code").toString();
+					semester = Integer.parseInt(address.getFactSlot("semester").toString());
+					
+					if (moduleInfo.containsKey(code)) {
+						keyValue = new KeyValue(code, moduleInfo.get(code).getName());
+					} else {
+						keyValue = new KeyValue(getProperName(code), "");
+					}
+					
+					ArrayList<KeyValue> list;
+					if (planner.containsKey(semester)) {
+						list = planner.get(semester);
+					} else {
+						list = new ArrayList<KeyValue>();
+					}
+					list.add(keyValue);
+					planner.put(semester, list);
+				}
+			} catch (Exception e) {
+				
+			}
+		}
+		return planner;
+	}
+	
+	private String getProperName(String code) {
+		if (code.equals(SINGAPORE_STUDIES)) {
+			return "Singapore Studies";
+		} else if (code.contains(UNRESTRICTED_ELECTIVES)) {
+			return "Unrestricted Elective";
+		}
+		return code;
 	}
 	
 	private String getCorequisite(String module) {

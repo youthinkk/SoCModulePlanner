@@ -11,6 +11,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -39,13 +41,23 @@ public class PlannerPanel extends JPanel {
 			Integer semester = entry.getKey();
 			ArrayList<KeyValue> modules = entry.getValue();
 			
+			Collections.sort(modules, new Comparator<KeyValue>() {
+
+				@Override
+				public int compare(KeyValue o1, KeyValue o2) {
+					return o1.getKey().compareTo(o2.getKey());
+				}
+				
+			});
+			
 			JTextArea textArea = new JTextArea(this.getPreferredSize().width, this.getPreferredSize().height);
 			JScrollPane scrollPane = new JScrollPane(textArea);
 			JLabel label = new JLabel();
 			
 			Integer year = semester/4 + 1;
 			Integer sem = semester%4 == 0 ? 1: semester%4;
-			String text = "Semester " + year + "-" + sem + "\n";
+			String semStr = sem == 3 ? "Special Term" : sem.toString();
+			String text = "Semester " + year + "-" + semStr + "\n";
 			
 			for (int i = 0; i < modules.size(); i++) {
 				KeyValue module = modules.get(i);

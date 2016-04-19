@@ -10,6 +10,7 @@ import analysis.AnalyseComputerScience;
 import analysis.IAnalyseMajor;
 import common.FilteredRequirement;
 import common.FocusArea;
+import common.KeyValue;
 import common.ModuleInfo;
 import constant.Constant;
 import storage.Storage;
@@ -44,10 +45,10 @@ public class Logic {
 		return _moduleInfo;
 	}
 	
-	public ArrayList<ArrayList<String>> getPlanner(String major, String focusArea, 
+	public TreeMap<Integer, ArrayList<KeyValue>> getPlanner(String major, String focusArea, 
 			ArrayList<String> modulesTaken, ArrayList<String> modulesWhitelist, 
 			boolean isMathTaken, boolean isPhysicsTaken, boolean isFromPoly, int planSemester) {
-		ArrayList<ArrayList<String>> planner = new ArrayList<ArrayList<String>>();
+		TreeMap<Integer, ArrayList<KeyValue>> planner = new TreeMap<Integer, ArrayList<KeyValue>>();
 		
 		FocusArea focusAreaSet = focusArea != null ? _focusArea.get(focusArea) : null;
 		ArrayList<ArrayList<ArrayList<String>>> requirement = _gradRequirement.get(major);
@@ -94,8 +95,8 @@ public class Logic {
 			}
 			
 			_clips.assertManagement(planSemester, modulesToBeTaken.size(), credits);
-			//_clips.reset();
 			_clips.run();
+			planner = _clips.getPlannedModules(_moduleInfo);
 			_clips.showFacts();
 		}
 		

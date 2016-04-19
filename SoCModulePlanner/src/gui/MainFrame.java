@@ -321,10 +321,11 @@ public class MainFrame extends JFrame {
 	private void executePlanner() {
 		//clearActionListener();
 		
-		_logic.getPlanner(_major, _focusArea, _modulesTaken, _modulesWhitelist, 
+		TreeMap<Integer, ArrayList<KeyValue>> planner = 
+				_logic.getPlanner(_major, _focusArea, _modulesTaken, _modulesWhitelist, 
 				_isMathTaken, _isPhysicsTaken, _isFromPoly, _planSemester);
 		
-		TreeMap<Integer, ArrayList<KeyValue>> planner = getSamplePlanner();
+		//TreeMap<Integer, ArrayList<KeyValue>> planner = getSamplePlanner();
 		_plannerPanel.setContent(planner);
 		
 		JScrollPane scrollPane = new JScrollPane(_plannerPanel);
