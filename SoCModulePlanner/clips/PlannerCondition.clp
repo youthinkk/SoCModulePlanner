@@ -72,7 +72,7 @@
     (test (member$ ?code ?prerequisites))
     =>
     (bind ?index (member$ ?code ?prerequisites))
-    (bind $?result (delete$ (create$ ?prerequisites) 1 1))
+    (bind $?result (delete$ (create$ ?prerequisites) ?index ?index))
     (modify ?module (prereq ?result) (minimum-semester ?minimum-semester))
     (printout t "Remove prereq: " ?code " from " ?code-mod crlf))
 
