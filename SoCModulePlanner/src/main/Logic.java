@@ -7,8 +7,9 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 import analysis.AnalyseComputerScience;
-import analysis.IAnalyseMajor;
-import common.FilteredRequirement;
+import analysis.AnalysisCS;
+import analysis.IAnalysis;
+import common.Analysis;
 import common.FocusArea;
 import common.KeyValue;
 import common.ModuleInfo;
@@ -53,17 +54,21 @@ public class Logic {
 		FocusArea focusAreaSet = focusArea != null ? _focusArea.get(focusArea) : null;
 		ArrayList<ArrayList<ArrayList<String>>> requirement = _gradRequirement.get(major);
 		int credits = getCurrentCredits(modulesTaken, isFromPoly);
-		IAnalyseMajor analyseMajor = null;
+		IAnalysis analysis = null;
 		
-		switch (major) {
+		/*switch (major) {
 			case Constant.MAJOR_COMPUTER_SCIENCE:
-				analyseMajor = new AnalyseComputerScience(_moduleInfo, _modulePrereq, _modulePreclusion, 
+				analysis = new AnalyseComputerScience(_moduleInfo, _modulePrereq, _modulePreclusion, 
 						requirement, focusAreaSet, modulesTaken, modulesWhitelist, isMathTaken, isPhysicsTaken, isFromPoly);
 				break;
-		}
+		}*/
 		
-		if (analyseMajor != null) {
-			FilteredRequirement result = analyseMajor.getResult();
+		analysis = new AnalysisCS(_moduleInfo, _modulePrereq, _modulePreclusion, 
+				requirement, focusAreaSet, modulesTaken, modulesWhitelist, isMathTaken, isPhysicsTaken, isFromPoly);
+		
+		
+		if (analysis != null) {
+			Analysis result = analysis.getResult();
 			ArrayList<String> modulesToBeTaken = result.getModulesToBeTaken();
 			HashMap<String, ArrayList<String>> modulesToBeTakenPrereq = result.getPrereq();
 			

@@ -3,14 +3,14 @@ package common;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FilteredRequirement {
+public class Analysis {
 	private ArrayList<String> _modulesToBeTaken;
 	private HashMap<String, ArrayList<String>> _prereq;
 	private boolean _isPrimaries4000Taken = false;
 	private int _amountOf4000ToBeTaken = 0;
 	
 	// For Computer Science
-	public FilteredRequirement(ArrayList<String> modulesToBeTaken, 
+	public Analysis(ArrayList<String> modulesToBeTaken, 
 			HashMap<String, ArrayList<String>> prereq,
 			boolean isPrimaries4000Taken, 
 			int amountOf4000ToBeTaken) {
@@ -18,6 +18,11 @@ public class FilteredRequirement {
 		_prereq = prereq;
 		_isPrimaries4000Taken = isPrimaries4000Taken;
 		_amountOf4000ToBeTaken = amountOf4000ToBeTaken;
+	}
+	
+	public Analysis(ArrayList<String> modulesToBeTaken, HashMap<String, ArrayList<String>> prereq) {
+		_modulesToBeTaken = modulesToBeTaken;
+		_prereq = prereq;
 	}
 	
 	public ArrayList<String> getModulesToBeTaken() {

@@ -325,7 +325,6 @@ public class MainFrame extends JFrame {
 				_logic.getPlanner(_major, _focusArea, _modulesTaken, _modulesWhitelist, 
 				_isMathTaken, _isPhysicsTaken, _isFromPoly, _planSemester);
 		
-		//TreeMap<Integer, ArrayList<KeyValue>> planner = getSamplePlanner();
 		_plannerPanel.setContent(planner);
 		
 		JScrollPane scrollPane = new JScrollPane(_plannerPanel);

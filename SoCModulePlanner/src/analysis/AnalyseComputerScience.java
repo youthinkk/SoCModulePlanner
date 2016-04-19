@@ -7,12 +7,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
-import common.FilteredRequirement;
+import common.Analysis;
 import common.FocusArea;
 import common.ModuleInfo;
 import constant.Constant;
 
-public class AnalyseComputerScience implements IAnalyseMajor {
+public class AnalyseComputerScience implements IAnalysis {
 	
 	private TreeMap<String, ModuleInfo> _moduleInfo;
 	private HashMap<String, ArrayList<ArrayList<String>>> _modulePrereq;
@@ -31,6 +31,7 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 	private boolean _isPrimaries4000Taken = false;
 	private int _amountOf4000Taken = 0;
 	private int _amountOfPrimariesTaken = 0;
+	private int _amountOf4000PrimariesTaken = 0;
 	
 	private final String FUNDEMENTAL_MODULE_MATH = "MA1301";
 	private final String FUNDEMENTAL_MODULE_PHYSICS1 = "PC1221";
@@ -67,7 +68,10 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 		filterMathPhysics();
 		filterWhitelistPreclusion();
 		addWhitelistPrereq();
+		forDemo();
 		analyseModulesToBeTakenPrereq();
+		fulfillCsBreadthDepth();
+		//forDemo();
 	}
 	
 	private void countAmountOf4000Taken() {
@@ -85,6 +89,10 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 				// check if the primaries is 4000
 				if (!_isPrimaries4000Taken) {
 					_isPrimaries4000Taken = _moduleInfo.get(module).getLevel() == 4000;
+				}
+				
+				if (_moduleInfo.get(module).getLevel() == 4000) {
+					_amountOf4000PrimariesTaken += 1;
 				}
 			} 
 		}
@@ -149,13 +157,14 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 	
 	private void filterFocusAreaPrimaries() {
 		int count = 3;
+		int number = _amountOfPrimariesTaken;
 		
-		while (_amountOfPrimariesTaken > 0 && count > 0) {
+		while (number > 0 && count > 0) {
 			String name = "Primaries" + count;
 			if (_modulesToBeTaken.contains(name)) {
 				_modulesToBeTaken.remove(name);
 			}
-			_amountOfPrimariesTaken--;
+			number--;
 			count--;
 		}
 	}
@@ -324,6 +333,32 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 		}*/
 	}
 	
+	private void fulfillCsBreadthDepth() {
+		//_isPrimaries4000Taken;
+		//_amountOf4000Taken;
+		//_amountOfPrimariesTaken;
+		ArrayList<String> primaries = _focusArea.getPrimaries();
+		ArrayList<String> electives = _focusArea.getElectives();
+		int amountOfCsButNotCoreTaken = 0;
+		for (String module: _modulesTaken) {
+			ModuleInfo info = _moduleInfo.get(module);
+			
+			if (info.getDepartment().equals(Constant.DEPARTMENT_COMPUTER_SCIENCE) && 
+					!_focusArea.getPrimaries().contains(module) && 
+					!primaries.contains(module)) {
+				amountOfCsButNotCoreTaken += 1;
+			}
+			
+		}
+		
+		int amountOf4000ToBeTaken = (_amountOf4000Taken > 3) ? 0 : (3 - _amountOf4000Taken);
+		int amountOfPrimariesToBeTaken = (_amountOfPrimariesTaken > 3) ? 0 : (3 - _amountOfPrimariesTaken);
+		
+		if (!_isPrimaries4000Taken) {
+			
+		}
+	}
+	
 	private ArrayList<String> getPrereq(String module) {		
 		ArrayList<String> prereqList = new ArrayList<String>();
 		if (!_modulePrereq.containsKey(module) &&
@@ -382,9 +417,83 @@ public class AnalyseComputerScience implements IAnalyseMajor {
 	private boolean isPrimaries(String module, ArrayList<String> primaries) {
 		return primaries.contains(module);
 	}
+	
+	private void forDemo() {
+		int count = 3;
+		
+		while (count > 0) {
+			String name = "Primaries" + count;
+			if (_modulesToBeTaken.contains(name)) {
+				_modulesToBeTaken.remove(name);
+			}
+			
+			name = "Electives" + count;
+			if (_modulesToBeTaken.contains(name)) {
+				_modulesToBeTaken.remove(name);
+			}
+			count--;
+		}
+		
+		ArrayList<String> primaries = _focusArea.getPrimaries();
+		ArrayList<String> electives = _focusArea.getElectives();
+		
+		int amountOfCsButNotCoreTaken = 0;
+		for (String module: _modulesTaken) {
+			ModuleInfo info = _moduleInfo.get(module);
+			
+			if (info.getDepartment().equals(Constant.DEPARTMENT_COMPUTER_SCIENCE) && 
+					!primaries.contains(module)) {
+				amountOfCsButNotCoreTaken += 1;
+			}	
+		}
+		
+		count = 0;
+		for (int i = 0; i < primaries.size() && count < 3; i++) {
+			String module = primaries.get(i);
+			
+			if (!_moduleInfo.containsKey(module)) continue;
+			
+			if (_modulesTaken.contains(module) && _modulesFulfillRequirement.contains(module)) continue;
+			ArrayList<String> prereqSet = getPrereq(module);
+			
+			for (String prereq: prereqSet) {
+				if (!_modulesToBeTaken.contains(prereq)) {
+					_modulesToBeTaken.add(prereq);
+				}
+				
+				if (!_moduleInfo.containsKey(prereq)) continue;
+				
+				if (!_modulesTaken.contains(prereq) && 
+						_moduleInfo.get(prereq).getDepartment().equals(Constant.DEPARTMENT_COMPUTER_SCIENCE)) {
+					amountOfCsButNotCoreTaken += 1;
+				}
+			}
+			count++;
+		}
+		
+		int amountOfElectivesToBeTaken = (amountOfCsButNotCoreTaken > 3) ? 0 : (3 - amountOfCsButNotCoreTaken);
+		
+		count = 0;
+		for (int i = 0; i < electives.size() && count < 3; i++) {
+			String module = electives.get(i);
+			
+			if (!_moduleInfo.containsKey(module)) continue;
+			
+			if (_modulesTaken.contains(module) && _modulesFulfillRequirement.contains(module)) continue;
+			ArrayList<String> prereqSet = getPrereq(module);
+			
+			for (String prereq: prereqSet) {
+				if (!_modulesToBeTaken.contains(prereq)) {
+					_modulesToBeTaken.add(prereq);
+				}
+			}
+			count++;
+		}
+		//for (int i)
+	}
 
-	public FilteredRequirement getResult() {
+	public Analysis getResult() {
 		int amountOf4000ToBeTaken = (_amountOf4000Taken > 3) ? 0 : (3 - _amountOf4000Taken);
-		return new FilteredRequirement(_modulesToBeTaken, _modulesToBeTakenPrereq, _isPrimaries4000Taken, amountOf4000ToBeTaken);
+		return new Analysis(_modulesToBeTaken, _modulesToBeTakenPrereq, _isPrimaries4000Taken, amountOf4000ToBeTaken);
 	}
 }

@@ -63,7 +63,7 @@ public class GradRequirementJson {
 		firstLayer.add(secondLayer);
 			
 		// CS Depth & Breadth
-		secondLayer = new ArrayList<ArrayList<String>>();
+		/*secondLayer = new ArrayList<ArrayList<String>>();
 		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_PRIMARIES1}));
 		firstLayer.add(secondLayer);
 		
@@ -73,9 +73,9 @@ public class GradRequirementJson {
 		
 		secondLayer = new ArrayList<ArrayList<String>>();
 		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_PRIMARIES3}));
-		firstLayer.add(secondLayer);
+		firstLayer.add(secondLayer);*/
 		
-		secondLayer = new ArrayList<ArrayList<String>>();
+		/*secondLayer = new ArrayList<ArrayList<String>>();
 		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_ELECTIVES1}));
 		firstLayer.add(secondLayer);
 		
@@ -85,7 +85,7 @@ public class GradRequirementJson {
 		
 		secondLayer = new ArrayList<ArrayList<String>>();
 		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_ELECTIVES3}));
-		firstLayer.add(secondLayer);
+		firstLayer.add(secondLayer);*/
 		
 		secondLayer = new ArrayList<ArrayList<String>>();
 		secondLayer.add(getModules(new String[] {"CS3201" , "CS3202"}));
@@ -137,20 +137,20 @@ public class GradRequirementJson {
 		firstLayer.add(secondLayer);
 		
 		secondLayer = new ArrayList<ArrayList<String>>();
-		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_SCIENCE1}));
+		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_SCIENCE}));
 		firstLayer.add(secondLayer);
 		
 		secondLayer = new ArrayList<ArrayList<String>>();
-		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_SCIENCE2}));
+		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_SCIENCE}));
 		firstLayer.add(secondLayer);
 		
 		secondLayer = new ArrayList<ArrayList<String>>();
-		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_SCIENCE3}));
+		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_SCIENCE}));
 		firstLayer.add(secondLayer);
 		
 		// University Requirements
 		secondLayer = new ArrayList<ArrayList<String>>();
-		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_GEM1}));
+		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_GEM}));
 		firstLayer.add(secondLayer);
 
 		secondLayer = new ArrayList<ArrayList<String>>();

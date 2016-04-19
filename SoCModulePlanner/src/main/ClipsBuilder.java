@@ -47,7 +47,7 @@ public class ClipsBuilder {
 	
 	public void assertModule(String code, int level, int credits, 
 			String corequisite, ArrayList<String> prerequisites, boolean[] offer) {
-		String prereqStr = String.join(" ", prerequisites);
+		String prereqStr = prerequisites == null ? "" : String.join(" ", prerequisites);
 		String offerStr = "";
 		
 		for (int i = 0; i < offer.length; i++) {
