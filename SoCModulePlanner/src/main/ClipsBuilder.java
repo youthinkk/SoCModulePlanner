@@ -14,6 +14,7 @@ public class ClipsBuilder {
 	private Environment _clips;
 	private final String SINGAPORE_STUDIES = "SS";
 	private final String UNRESTRICTED_ELECTIVES = "UELECTIVE";
+	private final String SCIENCE = "Science";
 	
 	public ClipsBuilder() {
 		_clips = new Environment();
@@ -130,6 +131,8 @@ public class ClipsBuilder {
 			return "Singapore Studies";
 		} else if (code.contains(UNRESTRICTED_ELECTIVES)) {
 			return "Unrestricted Elective";
+		} else if (code.contains(SCIENCE)) {
+			return "Science";
 		}
 		return code;
 	}

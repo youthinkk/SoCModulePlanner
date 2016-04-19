@@ -89,10 +89,11 @@
 
 ; ; Mark the module available        
 (defrule mark-available
-    (declare (salience 9))
+    (declare (salience 10))
     ?module <- (module (code ?code) (status unavailable) (prereq))
     =>
     (modify ?module (status available))
+    (refresh mark-available)
     (printout t ?code " is available now" crlf))
 
 (defrule program-end

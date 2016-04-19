@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import analysis.AnalyseComputerScience;
 import analysis.AnalysisCS;
@@ -26,6 +28,10 @@ public class Logic {
 	
 	private String _plannerCondition;
 	private ClipsBuilder _clips;
+	
+	private String _regex = "(\\d{4})";
+	private Pattern _pattern = Pattern.compile(_regex);
+	private Matcher _matcher;
 	
 	public Logic() {
 		
@@ -76,11 +82,19 @@ public class Logic {
 
 				@Override
 				public int compare(String o1, String o2) {
-					ModuleInfo info1 = _moduleInfo.get(o1);
-					ModuleInfo info2 = _moduleInfo.get(o2);
-					Integer level1 = info1 != null ? info1.getLevel() : 1000;
-					Integer level2 = info2 != null ? info2.getLevel() : 1000;
-					return level1.compareTo(level2);
+					_matcher = _pattern.matcher(o1);
+					boolean isMatch1 = _matcher.find();
+					
+					_matcher = _pattern.matcher(o2);
+					boolean isMatch2 = _matcher.find();
+					
+					if (isMatch1 && !isMatch2) {
+						return -1;
+					} else if (!isMatch1 && isMatch2) {
+						return 1;
+					}
+					
+					return o1.compareTo(o2);
 				}
 				
 			});
