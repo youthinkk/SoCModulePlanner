@@ -15,12 +15,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Set;
 import java.util.TreeMap;
 
 public class PlannerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private String _regex = "(\\d{4})";
+	private Pattern _pattern = Pattern.compile(_regex);
+	private Matcher _matcher;
 
 	public PlannerPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -45,6 +50,18 @@ public class PlannerPanel extends JPanel {
 
 				@Override
 				public int compare(KeyValue o1, KeyValue o2) {
+					_matcher = _pattern.matcher(o1.getKey());
+					boolean isMatch1 = _matcher.find();
+					
+					_matcher = _pattern.matcher(o2.getKey());
+					boolean isMatch2 = _matcher.find();
+					
+					if (isMatch1 && !isMatch2) {
+						return -1;
+					} else if (!isMatch1 && isMatch2) {
+						return 1;
+					}
+					
 					return o1.getKey().compareTo(o2.getKey());
 				}
 				

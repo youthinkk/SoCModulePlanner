@@ -154,7 +154,7 @@ public class GradRequirementJson {
 		firstLayer.add(secondLayer);
 
 		secondLayer = new ArrayList<ArrayList<String>>();
-		secondLayer.add(getModules(new String[] {Constant.REQUIREMENT_GEM2}));
+		secondLayer.add(getModules(new String[] {"GEK1901"}));
 		firstLayer.add(secondLayer);
 
 		secondLayer = new ArrayList<ArrayList<String>>();
